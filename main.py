@@ -3,9 +3,12 @@ from urllib.request import Request, urlopen
 import sys
 import time
 import random
-import csv
 
 # Run through every page in the database and store url to text file
+
+title_string = ''
+desc_string = ''
+
 for x in range(3, 4):
     url = "https://www.chegg.com/homework-help/questions-and-answers/q" + str(x)
 
@@ -25,28 +28,21 @@ for x in range(3, 4):
             sys.exit()
 
         # Find the question title
-        title_array = np.array
         for EachPart in soup.select('h1[class*="PageHeading-"]'):
             # print(EachPart.get_text() + "\n")
-            title = EachPart.get_text
-            title_array = np.array([title])  # Save to numpy array col1
+            title_string += EachPart.get_text(strip=True)
 
         # Find the full question text
-        desc_array = np.array
         for EachPart in soup.select('section[class*="QuestionBody__QuestionBodyWrapper-sc-"]'):
             # print(EachPart.get_text())
-            desc = EachPart.get_text
-            
-            desc_array = np.array([EachPart.get_text])  # Save to numpy array col2
+            desc_string += EachPart.get_text(strip=True)
 
-        # Transpose data into two columns
-        data = np.array([title_array, desc_array])
-        data = data.T
-
-        # Open ASCII file
-        datafile_path = "questions.csv"
-        with open(datafile_path, 'w+') as datafile_id:
-            np.savetxt(datafile_id, data, fmt=['%s', '%s'])  # Write to the file
     except Exception as e:
         print(e)
         sys.exit()
+
+with open('titles.csv', 'w', newline='') as csv_file:
+    csv_file.write(title_string)
+
+with open('descriptions.csv', 'w', newline='') as csv_file:
+    csv_file.write(desc_string)
