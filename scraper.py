@@ -1,15 +1,11 @@
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
-import sys
 import time
+from datetime import datetime
 import random
 import os
-from selenium import webdriver
 from fake_useragent import UserAgent
-
-title_string = ''
-desc_string = ''
-bread_string = ''
+import io  # for utf-8 encoding bug fix
 
 
 # This function generates a random user agent
@@ -21,27 +17,34 @@ def get_random_ua():
 
 # Helper function for writing to file
 def writer(file, mode, string_var):
-    f = open(f"{file}", f"{mode}")
+    # io.open to fix "'charmap' codec can't encode character
+    # '\u03c7' in position 309: character maps to <undefined>"
+    # '\u03a9' \u2212 etc.
+    f = io.open(f"{file}", f"{mode}", encoding="utf-8")
     f.write(f"{string_var}")
     f.write('\n')
     f.close()
 
 
+incrementer = 976
 # Run through every page in the database and store url to text file
-for x in range(10, 13):
+for x in range(incrementer, 400000):
+    # Should reset at the start of each loop
+    title_string = ''
+    desc_string = ''
 
     # Run through all questions in archive by using q###### schema
-    url = "https://www.chegg.com/homework-help/questions-and-answers/q" + str(x)
+    url = "https://www.chegg.com/homework-help/questions-and-answers/q" + str(incrementer)
+    incrementer += 1
 
-    # Web driver testing
-
-    # Disguise the request as standard browser (firefox) + trusted bot/service
+    # Disguise the request as google IP range service
     req = Request(url, headers={
-        'User-Agent': get_random_ua()
+        'User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)',
+        "Accept-Language": "en-US, en;q=0.5"
     })
-    print("Grabbing: " + url)
+    print(str(x) + " - Grabbing: " + url)
     # Reduce suspicion by grabbing page at random intervals
-    time.sleep(random.randint(1, 3))
+    time.sleep(random.randint(11, 20))
 
     try:
         page = urlopen(req).read()  # take request and read
@@ -50,45 +53,40 @@ for x in range(10, 13):
         # Find the question title
         if soup.select('h1[class*="PageHeading-"]'):  # if the page is a q&a page
 
-            # Find the category of the question
-            for EachCategory in soup.findAll('a[class*="BreadcrumbLink-sc-"]'):
-                bread_string = EachCategory.get_text(strip=True)
-                # print(EachPart.get_text())
-                # Concat. each separate string to fill one row
-
             for EachTitle in soup.select('h1[class*="PageHeading-"]'):
-                # print(EachPart.get_text() + "\n")
                 # Concat. each separate string to fill one row
-                title_string = EachTitle.get_text(strip=True)
+                title_string += EachTitle.get_text(strip=True)
 
             # Find the full question text
             for EachDescription in soup.select('section[class*="QuestionBody__QuestionBodyWrapper-sc-"]'):
-                # print(EachPart.get_text())
                 # Concat. each separate string to fill one row
-                desc_string = EachDescription.get_text(strip=True)
+                desc_string += EachDescription.get_text(strip=True)
+
+            # Note
 
             # Save titles to titles.txt
-            if not (os.path.isfile("titles.txt")) or os.stat("titles.txt").st_size == 0:
-                writer('titles.txt', 'w', title_string.replace('\n', ''))
+            if not (os.path.isfile("export/titles.txt")) or os.stat("export/titles.txt").st_size == 0:
+                writer('export/questions.txt', 'w', title_string.replace('\n', ' '))  # create questions.txt
+                writer('export/questions.txt', 'a', desc_string.replace('\n', ' '))
             else:
-                writer('titles.txt', 'a', title_string.replace('\n', ''))
+                writer('export/questions.txt', 'a', title_string.replace('\n', ' '))
+                writer('export/questions.txt', 'a', desc_string.replace('\n', ' '))
 
-            # Save descriptions to descriptions.txt
-            if not os.path.isfile("description.txt") or os.stat("description.txt").st_size == 0:
-                writer('description.txt', 'w', desc_string.replace('\n', ''))
-            else:
-                writer('description.txt', 'a', desc_string.replace('\n', ''))
-
-            # Save associated categories to breadcrumbs.txt
-            if not os.path.isfile("breadcrumb.txt") or os.stat("breadcrumb.txt").st_size == 0:
-                writer('breadcrumb.txt', 'w', (bread_string + ' / ').replace('\n', ''))
-            else:
-                writer('breadcrumb.txt', 'a', (bread_string + ' / ').replace('\n', ''))
-
+        else:  # Otherwise move to the next function
+            pass
     except Exception as e:
         print(e)
-        m = open("error_log", "w")
+        # Export error log to file
+        m = open("export/error_log.txt", "a")
         m.write(str(e))
-        m.write("\n Iteration interrupted at question: " + str(x))
+        m.write('\n')
+        m.write("Iteration interrupted at question: " + str(incrementer))
+        m.write('\n')
+        m.write("@" + str(datetime.now()))
+        m.write('\n')
         m.close()
-        sys.exit()
+        x = x - 1
+        incrementer = x  # start from last stop
+        # Wait between 8 and 10 minutes if blocked
+        time.sleep(random.randint(800, 10000))
+        pass
