@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/chromedriver-scraper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chromedriver.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/export/error_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/useragents.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/breadcrumb.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/description.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/error_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/error_log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/export/error_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/export/error_log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/titles.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1581726640800</updated>
       <workItem from="1581726643273" duration="11212000" />
-      <workItem from="1581830958614" duration="38903000" />
+      <workItem from="1581830958614" duration="42035000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
@@ -143,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581846707077</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Ditched breadcrumbs&#10;Consolidated title and description to one file due to mismatch&#10;-- Thinking it may be a good idea to keep files separate&#10;&#10;- Reason for issue with misalignment between files was one question description taking up multiple new lines due to 1. 2. ? &#10; &#10;- Added google user agent to replace random user agent, better at avoiding detection. However it slows the retrieval speed significantly. &#10;&#10;- Added option for automatic incrementation save of incrementer&#10;-- Ideally this would also write to file to save the last increment and restart if bot shuts down.">
+      <created>1581931589194</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1581931589194</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +152,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column." />
     <MESSAGE value="Working on getting breadcrumb.txt working correctly&#10;&#10;Working on improving bot bypass, api proxy was banned" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on getting breadcrumb.txt working correctly&#10;&#10;Working on improving bot bypass, api proxy was banned" />
+    <MESSAGE value="Ditched breadcrumbs&#10;Consolidated title and description to one file due to mismatch&#10;-- Thinking it may be a good idea to keep files separate&#10;&#10;- Reason for issue with misalignment between files was one question description taking up multiple new lines due to 1. 2. ? &#10; &#10;- Added google user agent to replace random user agent, better at avoiding detection. However it slows the retrieval speed significantly. &#10;&#10;- Added option for automatic incrementation save of incrementer&#10;-- Ideally this would also write to file to save the last increment and restart if bot shuts down." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ditched breadcrumbs&#10;Consolidated title and description to one file due to mismatch&#10;-- Thinking it may be a good idea to keep files separate&#10;&#10;- Reason for issue with misalignment between files was one question description taking up multiple new lines due to 1. 2. ? &#10; &#10;- Added google user agent to replace random user agent, better at avoiding detection. However it slows the retrieval speed significantly. &#10;&#10;- Added option for automatic incrementation save of incrementer&#10;-- Ideally this would also write to file to save the last increment and restart if bot shuts down." />
   </component>
   <component name="WindowStateProjectService">
     <state x="807" y="183" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581895765314">
@@ -172,10 +172,10 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state x="259" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.0.1854.1080@66.0.1854.1080" timestamp="1581837014952" />
-    <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2" timestamp="1581931539873">
+    <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2" timestamp="1581931586173">
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
-    <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2/66.0.1854.1080@66.0.1854.1080" timestamp="1581931539873" />
+    <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2/66.0.1854.1080@66.0.1854.1080" timestamp="1581931586173" />
     <state x="773" y="303" key="FileChooserDialogImpl" timestamp="1581895761094">
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
@@ -212,10 +212,10 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state width="1811" height="360" key="GridCell.Tab.1.right/66.0.1854.1080@66.0.1854.1080" timestamp="1581832838892" />
-    <state x="121" y="276" key="Vcs.Push.Dialog.v2" timestamp="1581846725044">
+    <state x="121" y="276" key="Vcs.Push.Dialog.v2" timestamp="1581931719111">
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
-    <state x="121" y="276" key="Vcs.Push.Dialog.v2/66.0.1854.1080@66.0.1854.1080" timestamp="1581846725044" />
+    <state x="121" y="276" key="Vcs.Push.Dialog.v2/66.0.1854.1080@66.0.1854.1080" timestamp="1581931719111" />
     <state x="694" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1581726674408">
       <screen x="66" y="0" width="1854" height="1080" />
     </state>

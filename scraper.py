@@ -4,15 +4,7 @@ import time
 from datetime import datetime
 import random
 import os
-from fake_useragent import UserAgent
 import io  # for utf-8 encoding bug fix
-
-
-# This function generates a random user agent
-def get_random_ua():
-    ua = UserAgent()
-    ua.update()  # Update useragent database
-    return ua.random
 
 
 # Helper function for writing to file
@@ -22,13 +14,13 @@ def writer(file, mode, string_var):
     # '\u03a9' \u2212 etc.
     f = io.open(f"{file}", f"{mode}", encoding="utf-8")
     f.write(f"{string_var}")
-    f.write('\n')
+    f.write("\n")
     f.close()
 
 
 incrementer = 976
 # Run through every page in the database and store url to text file
-for x in range(incrementer, 400000):
+for x in range(incrementer, 4000000):
     # Should reset at the start of each loop
     title_string = ''
     desc_string = ''
@@ -62,15 +54,15 @@ for x in range(incrementer, 400000):
                 # Concat. each separate string to fill one row
                 desc_string += EachDescription.get_text(strip=True)
 
-            # Note
-
             # Save titles to titles.txt
-            if not (os.path.isfile("export/titles.txt")) or os.stat("export/titles.txt").st_size == 0:
+            if not (os.path.isfile("export/questions.txt")) or os.stat("export/questions.txt").st_size == 0:
                 writer('export/questions.txt', 'w', title_string.replace('\n', ' '))  # create questions.txt
                 writer('export/questions.txt', 'a', desc_string.replace('\n', ' '))
+                writer('export/questions.txt', 'a', "\n\n")  # new line
             else:
                 writer('export/questions.txt', 'a', title_string.replace('\n', ' '))
                 writer('export/questions.txt', 'a', desc_string.replace('\n', ' '))
+                writer('export/questions.txt', 'a', "\n\n")  # new line
 
         else:  # Otherwise move to the next function
             pass
@@ -88,5 +80,5 @@ for x in range(incrementer, 400000):
         x = x - 1
         incrementer = x  # start from last stop
         # Wait between 8 and 10 minutes if blocked
-        time.sleep(random.randint(800, 10000))
+        time.sleep(random.randint(800, 1000))
         pass
