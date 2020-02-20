@@ -1,0 +1,51 @@
+'base64' is not a text encoding; use codecs.open() to handle arbitrary codecs
+Iteration interrupted at question: 1
+@2020-02-19 18:25:31.704946
+a bytes-like object is required, not 'str'
+Iteration interrupted at question: 1
+@2020-02-19 18:27:40.119195
+a bytes-like object is required, not 'str'
+Iteration interrupted at question: 1
+@2020-02-19 20:05:34.287604
+a bytes-like object is required, not 'str'
+Iteration interrupted at question: 1
+@2020-02-19 21:21:53.409430
+a bytes-like object is required, not 'str'
+Iteration interrupted at question: 1
+@2020-02-19 21:27:44.844701
+expected bytes-like object, not str
+Iteration interrupted at question: 1
+@2020-02-19 21:35:44.573696
+iterable expected, not int
+Iteration interrupted at question: 1
+@2020-02-19 21:39:48.457368
+iterable expected, not int
+Iteration interrupted at question: 1
+@2020-02-19 21:42:34.671165
+not readable
+Iteration interrupted at question: 1
+@2020-02-19 21:56:06.992814
+'str' object has no attribute 'keys'
+Iteration interrupted at question: 1
+@2020-02-19 22:14:31.699952
+'str' object has no attribute 'keys'
+Iteration interrupted at question: 1
+@2020-02-19 22:17:39.806648
+'str' object has no attribute 'keys'
+Iteration interrupted at question: 1
+@2020-02-19 22:35:27.496471
+'str' object has no attribute 'keys'
+Iteration interrupted at question: 1
+@2020-02-19 22:35:57.768246
+'str' object has no attribute 'keys'
+Iteration interrupted at question: 1
+@2020-02-19 22:37:18.104722
+[Errno 13] Permission denied: 'export/questions.csv'HTTP Error 403: Forbidden[Errno 13] Permission denied: 'export/questions.csv'[Errno 13] Permission denied: 'export/questions.csv'HTTP Error 403: ForbiddenHTTP Error 403: Forbidden
+Iteration interrupted at question: 3
+@2020-02-20 13:51:01.861462
+HTTP Error 403: Forbidden
+Iteration interrupted at question: 3
+@2020-02-20 13:51:57.400510
+HTTP Error 403: Forbidden
+Iteration interrupted at question: 2
+@2020-02-20 14:08:06.897000

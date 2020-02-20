@@ -1,31 +1,74 @@
-from bs4 import BeautifulSoup
-from urllib.request import Request, urlopen
-import time
-from datetime import datetime
-import random
+import base64
+import csv
 import os
-import io  # for utf-8 encoding bug fix
+import random
+import sys
+import time
+import atexit
+from datetime import datetime
+from urllib.request import Request, urlopen
+
+from bs4 import BeautifulSoup
+import pandas as pd  # empty file check
+
+
+# Check to see if the counter value is present and in the text file before continuing
+def load_counter():
+    try:
+        global incrementer
+        w = open("incrementer.txt", "r")
+        temp = int(w.readline())
+        if temp > 0:
+            incrementer = temp
+    except FileNotFoundError:
+        print("Beginning first run")
+        incrementer = 0
+    return incrementer
+
+
+# Save increment counter to file to be recovered after system reopened
+def save_counter():
+    w = open("incrementer.txt", "w")
+    w.write(str(incrementer))
+
+
+def create_row(number, title, description, category):
+    encoded_title = base64.b64encode(title.encode())
+    encoded_description = base64.b64encode(description.encode())
+
+    string_var = [number, encoded_title, encoded_description, category]
+    writer(string_var)
 
 
 # Helper function for writing to file
-def writer(file, mode, string_var):
-    # io.open to fix "'charmap' codec can't encode character
-    # '\u03c7' in position 309: character maps to <undefined>"
-    # '\u03a9' \u2212 etc.
-    f = io.open(f"{file}", f"{mode}", encoding="utf-8")
-    f.write(f"{string_var}")
-    f.write("\n")
-    f.close()
+my_fields = ['number', 'title', 'description', 'category']  # csv columns  # for DictWriter headers
 
 
-incrementer = 976
+def writer(string_var):
+    my_file = open('export/questions.csv', 'a')
+    df = pd.read_csv('export/questions.csv')
+    write = csv.DictWriter(my_file, fieldnames=my_fields)
+
+    if incrementer <= 1 or df.empty:
+        write.writeheader()
+
+    write.writerow({'number': f'{string_var[0]}', 'title': f'{string_var[1]}', 'description': f'{string_var[2]}',
+                    'category': f'{string_var[3]}'})
+
+
+# Load incrementer file number from previous session on first run if counter file exists
+incrementer = load_counter()
+
 # Run through every page in the database and store url to text file
-for x in range(incrementer, 4000000):
+for x in range(incrementer, 10):
     # Should reset at the start of each loop
     title_string = ''
     desc_string = ''
+    temp_string_array = []
 
     # Run through all questions in archive by using q###### schema
+    #
+    # url = "http://patspace.me"
     url = "https://www.chegg.com/homework-help/questions-and-answers/q" + str(incrementer)
     incrementer += 1
 
@@ -34,7 +77,7 @@ for x in range(incrementer, 4000000):
         'User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)',
         "Accept-Language": "en-US, en;q=0.5"
     })
-    print(str(x) + " - Grabbing: " + url)
+    print(str(x) + " - Scraping: " + url)
     # Reduce suspicion by grabbing page at random intervals
     time.sleep(random.randint(11, 20))
 
@@ -54,20 +97,15 @@ for x in range(incrementer, 4000000):
                 # Concat. each separate string to fill one row
                 desc_string += EachDescription.get_text(strip=True)
 
-            # Save titles to titles.txt
-            if not (os.path.isfile("export/questions.txt")) or os.stat("export/questions.txt").st_size == 0:
-                writer('export/questions.txt', 'w', title_string.replace('\n', ' '))  # create questions.txt
-                writer('export/questions.txt', 'a', desc_string.replace('\n', ' '))
-                writer('export/questions.txt', 'a', "\n\n")  # new line
-            else:
-                writer('export/questions.txt', 'a', title_string.replace('\n', ' '))
-                writer('export/questions.txt', 'a', desc_string.replace('\n', ' '))
-                writer('export/questions.txt', 'a', "\n\n")  # new line
+            # Fill the csv file with the gathered title, description, and category
+            create_row(x, title_string, desc_string, 'uncategorized')
 
         else:  # Otherwise move to the next function
             pass
     except Exception as e:
-        print(e)
+        exc_type, exc_obj, exc_tb = sys.exc_info()
+        fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+        print(e, exc_type, fname, exc_tb.tb_lineno)
         # Export error log to file
         m = open("export/error_log.txt", "a")
         m.write(str(e))
@@ -77,8 +115,10 @@ for x in range(incrementer, 4000000):
         m.write("@" + str(datetime.now()))
         m.write('\n')
         m.close()
-        x = x - 1
+        x = incrementer - 1
         incrementer = x  # start from last stop
         # Wait between 8 and 10 minutes if blocked
         time.sleep(random.randint(800, 1000))
         pass
+
+atexit.register(save_counter)  # At normal program close, save the text file
