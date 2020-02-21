@@ -2,6 +2,7 @@ import base64
 import csv
 import os
 import random
+import re
 import sys
 import time
 import atexit
@@ -9,7 +10,6 @@ from datetime import datetime
 from urllib.request import Request, urlopen
 
 from bs4 import BeautifulSoup
-import pandas as pd  # empty file check
 
 
 # Check to see if the counter value is present and in the text file before continuing
@@ -32,7 +32,7 @@ def save_counter():
     w.write(str(incrementer))
 
 
-def create_row(number, title, description, category):
+def write_row(number, title, description, category):
     encoded_title = base64.b64encode(title.encode())
     encoded_description = base64.b64encode(description.encode())
 
@@ -46,10 +46,9 @@ my_fields = ['number', 'title', 'description', 'category']  # csv columns  # for
 
 def writer(string_var):
     my_file = open('export/questions.csv', 'a')
-    df = pd.read_csv('export/questions.csv')
     write = csv.DictWriter(my_file, fieldnames=my_fields)
 
-    if incrementer <= 1 or df.empty:
+    if incrementer <= 1 or os.stat("export/questions.csv").st_size == 0:
         write.writeheader()
 
     write.writerow({'number': f'{string_var[0]}', 'title': f'{string_var[1]}', 'description': f'{string_var[2]}',
@@ -67,12 +66,13 @@ for x in range(incrementer, 10):
     temp_string_array = []
 
     # Run through all questions in archive by using q###### schema
-    #
+    # https://www.chegg.com/homework-help/questions-and-answers/q
     # url = "http://patspace.me"
     url = "https://www.chegg.com/homework-help/questions-and-answers/q" + str(incrementer)
     incrementer += 1
 
     # Disguise the request as google IP range service
+    # User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)
     req = Request(url, headers={
         'User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)',
         "Accept-Language": "en-US, en;q=0.5"
@@ -97,8 +97,25 @@ for x in range(incrementer, 10):
                 # Concat. each separate string to fill one row
                 desc_string += EachDescription.get_text(strip=True)
 
+            # TODO
+            # Add a loop to gather the breadcrumb name of a page
+            # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
+            # Javascript parser for identifying specific breadcrumbs
+            # Param result = string containing breadcrumb script
+            scripts = soup.find_all("script")
+            category = ''
+            for script in scripts:
+                text = script.text
+                m_text = text.split(',')
+                for n in m_text:
+                    if 'parentSubject' in n:
+                        category = n  # Get subject name from script
+
+            match = re.search(r'"([A-Z]\w+)"', category)  # Apply regex to grab only second word
+            category = match.group(1)
+            # category = category.replace(':"', '')
             # Fill the csv file with the gathered title, description, and category
-            create_row(x, title_string, desc_string, 'uncategorized')
+            write_row(x, title_string, desc_string, category)
 
         else:  # Otherwise move to the next function
             pass
