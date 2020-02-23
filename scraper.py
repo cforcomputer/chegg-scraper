@@ -59,7 +59,7 @@ def writer(string_var):
 incrementer = load_counter()
 
 # Run through every page in the database and store url to text file
-for x in range(incrementer, 10):
+for x in range(incrementer, 4000000):
     # Should reset at the start of each loop
     title_string = ''
     desc_string = ''
@@ -74,12 +74,11 @@ for x in range(incrementer, 10):
     # Disguise the request as google IP range service
     # User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)
     req = Request(url, headers={
-        'User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)',
-        "Accept-Language": "en-US, en;q=0.5"
+        'User-Agent': 'Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)'
     })
     print(str(x) + " - Scraping: " + url)
     # Reduce suspicion by grabbing page at random intervals
-    time.sleep(random.randint(11, 20))
+    time.sleep(random.randint(11, 18))
 
     try:
         page = urlopen(req).read()  # take request and read
@@ -97,7 +96,6 @@ for x in range(incrementer, 10):
                 # Concat. each separate string to fill one row
                 desc_string += EachDescription.get_text(strip=True)
 
-            # TODO
             # Add a loop to gather the breadcrumb name of a page
             # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
             # Javascript parser for identifying specific breadcrumbs
@@ -108,12 +106,11 @@ for x in range(incrementer, 10):
                 text = script.text
                 m_text = text.split(',')
                 for n in m_text:
-                    if 'parentSubject' in n:
+                    if '"parentSubject":' in n:
                         category = n  # Get subject name from script
 
-            match = re.search(r'"([A-Z]\w+)"', category)  # Apply regex to grab only second word
+            match = re.search(r':"(.*?)"', category)  # Apply regex to grab only second word
             category = match.group(1)
-            # category = category.replace(':"', '')
             # Fill the csv file with the gathered title, description, and category
             write_row(x, title_string, desc_string, category)
 
@@ -125,17 +122,18 @@ for x in range(incrementer, 10):
         print(e, exc_type, fname, exc_tb.tb_lineno)
         # Export error log to file
         m = open("export/error_log.txt", "a")
+        save_counter()
         m.write(str(e))
         m.write('\n')
-        m.write("Iteration interrupted at question: " + str(incrementer))
         m.write('\n')
         m.write("@" + str(datetime.now()))
         m.write('\n')
-        m.close()
         x = incrementer - 1
         incrementer = x  # start from last stop
-        # Wait between 8 and 10 minutes if blocked
-        time.sleep(random.randint(800, 1000))
+        m.write("Iteration interrupted at question: " + str(incrementer))
+        m.close()
+        # Wait between 8 and 9 minutes if blocked
+        time.sleep(random.randint(800, 900))
         pass
 
 atexit.register(save_counter)  # At normal program close, save the text file

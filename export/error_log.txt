@@ -1,150 +1,157 @@
-'base64' is not a text encoding; use codecs.open() to handle arbitrary codecs
-Iteration interrupted at question: 1
-@2020-02-19 18:25:31.704946
-a bytes-like object is required, not 'str'
-Iteration interrupted at question: 1
-@2020-02-19 18:27:40.119195
-a bytes-like object is required, not 'str'
-Iteration interrupted at question: 1
-@2020-02-19 20:05:34.287604
-a bytes-like object is required, not 'str'
-Iteration interrupted at question: 1
-@2020-02-19 21:21:53.409430
-a bytes-like object is required, not 'str'
-Iteration interrupted at question: 1
-@2020-02-19 21:27:44.844701
-expected bytes-like object, not str
-Iteration interrupted at question: 1
-@2020-02-19 21:35:44.573696
-iterable expected, not int
-Iteration interrupted at question: 1
-@2020-02-19 21:39:48.457368
-iterable expected, not int
-Iteration interrupted at question: 1
-@2020-02-19 21:42:34.671165
-not readable
-Iteration interrupted at question: 1
-@2020-02-19 21:56:06.992814
-'str' object has no attribute 'keys'
-Iteration interrupted at question: 1
-@2020-02-19 22:14:31.699952
-'str' object has no attribute 'keys'
-Iteration interrupted at question: 1
-@2020-02-19 22:17:39.806648
-'str' object has no attribute 'keys'
-Iteration interrupted at question: 1
-@2020-02-19 22:35:27.496471
-'str' object has no attribute 'keys'
-Iteration interrupted at question: 1
-@2020-02-19 22:35:57.768246
-'str' object has no attribute 'keys'
-Iteration interrupted at question: 1
-@2020-02-19 22:37:18.104722
-[Errno 13] Permission denied: 'export/questions.csv'HTTP Error 403: Forbidden[Errno 13] Permission denied: 'export/questions.csv'[Errno 13] Permission denied: 'export/questions.csv'HTTP Error 403: ForbiddenHTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 13:51:01.861462
 HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 13:51:57.400510
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 2
-@2020-02-20 14:08:06.897000
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 14:39:31.798758
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 14:43:18.557392
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 14:44:46.062265
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 14:46:20.721887
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 14:50:06.021552
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 3
-@2020-02-20 14:51:09.614049
-No columns to parse from file
-Iteration interrupted at question: 3
-@2020-02-20 14:52:04.779733
-No columns to parse from file
-Iteration interrupted at question: 3
-@2020-02-20 14:54:16.715765
-[WinError 2] The system cannot find the file specified: 'file'
-Iteration interrupted at question: 3
-@2020-02-20 14:57:50.222037
-[WinError 2] The system cannot find the file specified: 'file'
-Iteration interrupted at question: 3
-@2020-02-20 15:00:08.978036
-[WinError 2] The system cannot find the file specified: 'file'
-Iteration interrupted at question: 3
-@2020-02-20 15:02:32.788980
-Unexpected token (LT, '<') at 1:0 between None and LexToken(ID,'script',1,1)
-Iteration interrupted at question: 3
-@2020-02-20 21:46:46.349380
-'subject'
-Iteration interrupted at question: 3
-@2020-02-20 21:55:49.027219
-'Doctype' object has no attribute 'text'
-Iteration interrupted at question: 3
-@2020-02-20 22:00:01.770569
-empty separator
-Iteration interrupted at question: 3
-@2020-02-20 22:05:28.807133
-empty separator
-Iteration interrupted at question: 3
-@2020-02-20 22:06:35.920769
-'NoneType' object has no attribute 'replace'
-Iteration interrupted at question: 3
-@2020-02-20 22:30:00.878558
-[Errno 13] Permission denied: 'export/questions.csv'
-Iteration interrupted at question: 3
-@2020-02-20 22:32:51.440667
-[Errno 13] Permission denied: 'export/questions.csv'
-Iteration interrupted at question: 3
-@2020-02-20 22:36:24.268059
-sub() missing 1 required positional argument: 'string'
-Iteration interrupted at question: 3
-@2020-02-20 22:38:29.265105
-bad escape \w at position 7
-Iteration interrupted at question: 3
-@2020-02-20 22:41:01.891647
-bad escape \w at position 7
-Iteration interrupted at question: 3
-@2020-02-20 22:41:38.574586
-no such group
-Iteration interrupted at question: 2
-@2020-02-20 23:03:54.688556
-no such group
-Iteration interrupted at question: 2
-@2020-02-20 23:04:48.910937
-no such group
-Iteration interrupted at question: 2
-@2020-02-20 23:07:33.637345
-no such group
-Iteration interrupted at question: 2
-@2020-02-20 23:08:55.452887
-no such group
-Iteration interrupted at question: 2
-@2020-02-20 23:09:42.607527
-'NoneType' object has no attribute 'group'
-Iteration interrupted at question: 2
-@2020-02-20 23:10:56.929694
-'NoneType' object has no attribute 'group'
-Iteration interrupted at question: 2
-@2020-02-20 23:11:33.721442
-'NoneType' object has no attribute 'group'
-Iteration interrupted at question: 2
-@2020-02-20 23:15:26.934266
-'NoneType' object has no attribute 'group'
-Iteration interrupted at question: 2
-@2020-02-20 23:16:11.199921
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 2
-@2020-02-20 23:23:40.391184
-HTTP Error 403: Forbidden
-Iteration interrupted at question: 2
-@2020-02-20 23:28:31.674163
+
+@2020-02-21 03:14:39.446206
+Iteration interrupted at question: 129HTTP Error 403: Forbidden
+
+@2020-02-21 03:29:24.031779
+Iteration interrupted at question: 129HTTP Error 403: Forbidden
+
+@2020-02-21 03:44:32.629400
+Iteration interrupted at question: 129HTTP Error 403: Forbidden
+
+@2020-02-21 03:59:11.240665
+Iteration interrupted at question: 129HTTP Error 403: Forbidden
+
+@2020-02-21 05:09:36.261125
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 05:24:12.867820
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 05:38:20.690261
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 05:52:55.300658
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 06:06:54.809096
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 06:21:17.460174
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 06:35:23.913892
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 06:49:44.533873
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 07:04:16.000094
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 07:18:24.461182
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 07:32:16.912611
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 07:47:27.360063
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 08:01:04.811353
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 08:15:13.324563
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 08:30:14.807474
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 08:44:32.243544
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 08:58:57.746345
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 09:13:11.203035
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 09:27:09.659886
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 09:42:24.126614
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 09:56:40.592998
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 10:10:38.058128
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 10:24:39.571283
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 10:39:04.054747
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 10:52:50.529645
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 11:06:56.024012
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 11:21:19.491099
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 11:35:07.987725
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 11:50:15.458285
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 12:03:55.928730
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 12:18:51.383057
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 12:33:47.839882
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 12:48:35.299503
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 13:03:34.859510
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 13:17:25.430730
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 13:32:11.889490
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 14:47:44.228503
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 14:48:29.284782
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:10:34.499644
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:12:15.146157
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:12:52.320468
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:13:30.763981
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:14:16.146556
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:17:14.266884
+Iteration interrupted at question: 339HTTP Error 403: Forbidden
+
+@2020-02-21 15:18:50.332599
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:21:23.185735
+Iteration interrupted at question: 338HTTP Error 403: Forbidden
+
+@2020-02-21 15:27:40.848698
+Iteration interrupted at question: 339HTTP Error 403: Forbidden
+
+@2020-02-22 05:06:23.559064
+Iteration interrupted at question: 338
