@@ -1,157 +1,17 @@
-HTTP Error 403: Forbidden
+Message: chrome not reachable
+  (Session info: chrome=80.0.3987.122)
 
-@2020-02-21 03:14:39.446206
-Iteration interrupted at question: 129HTTP Error 403: Forbidden
 
-@2020-02-21 03:29:24.031779
-Iteration interrupted at question: 129HTTP Error 403: Forbidden
+@2020-02-26 23:59:03.497695
+Iteration interrupted at question: 1273425Message: chrome not reachable
+  (Session info: chrome=80.0.3987.122)
 
-@2020-02-21 03:44:32.629400
-Iteration interrupted at question: 129HTTP Error 403: Forbidden
 
-@2020-02-21 03:59:11.240665
-Iteration interrupted at question: 129HTTP Error 403: Forbidden
+@2020-02-27 00:02:56.527369
+Iteration interrupted at question: 3823426object of type 'NoneType' has no len()
 
-@2020-02-21 05:09:36.261125
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
+@2020-02-27 00:21:30.166247
+Iteration interrupted at question: 6373427[Errno 13] Permission denied: 'export/questions.csv'
 
-@2020-02-21 05:24:12.867820
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 05:38:20.690261
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 05:52:55.300658
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 06:06:54.809096
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 06:21:17.460174
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 06:35:23.913892
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 06:49:44.533873
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 07:04:16.000094
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 07:18:24.461182
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 07:32:16.912611
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 07:47:27.360063
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 08:01:04.811353
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 08:15:13.324563
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 08:30:14.807474
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 08:44:32.243544
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 08:58:57.746345
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 09:13:11.203035
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 09:27:09.659886
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 09:42:24.126614
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 09:56:40.592998
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 10:10:38.058128
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 10:24:39.571283
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 10:39:04.054747
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 10:52:50.529645
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 11:06:56.024012
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 11:21:19.491099
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 11:35:07.987725
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 11:50:15.458285
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 12:03:55.928730
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 12:18:51.383057
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 12:33:47.839882
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 12:48:35.299503
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 13:03:34.859510
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 13:17:25.430730
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 13:32:11.889490
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 14:47:44.228503
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 14:48:29.284782
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:10:34.499644
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:12:15.146157
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:12:52.320468
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:13:30.763981
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:14:16.146556
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:17:14.266884
-Iteration interrupted at question: 339HTTP Error 403: Forbidden
-
-@2020-02-21 15:18:50.332599
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:21:23.185735
-Iteration interrupted at question: 338HTTP Error 403: Forbidden
-
-@2020-02-21 15:27:40.848698
-Iteration interrupted at question: 339HTTP Error 403: Forbidden
-
-@2020-02-22 05:06:23.559064
-Iteration interrupted at question: 338
+@2020-02-27 00:39:57.391968
+Iteration interrupted at question: 31873437
