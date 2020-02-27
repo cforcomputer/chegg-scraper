@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chromedriver-scraper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/error_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/export/error_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/numberlist.data" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/export/questions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/incrementer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/incrementer.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +126,7 @@
       <workItem from="1581830958614" duration="44599000" />
       <workItem from="1582075919057" duration="408000" />
       <workItem from="1582159804320" duration="70466000" />
-      <workItem from="1582717709997" duration="5348000" />
+      <workItem from="1582717709997" duration="5476000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
