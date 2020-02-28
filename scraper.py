@@ -175,7 +175,7 @@ def collect_page():
         # time.sleep(random.uniform(0.5, 1))
         # -- umatrix testing
         # scroll_down_arrow = chrome_browser.find_element_by_xpath("/html/body/div[1]/div[4]/oc-component/div["
-                                                                # "1]/div/nav/ul/li[11]/a/span")
+        # "1]/div/nav/ul/li[11]/a/span")
         # TouchActions(chrome_browser).long_press(scroll_down_arrow)
 
         content = chrome_browser.page_source  # grab html from the page
@@ -212,6 +212,11 @@ for x in range(incrementer, 4000000):
                 # Concat. each separate string to fill one row
                 desc_string += EachDescription.get_text(strip=True)
 
+            # Prototyping finding the transcript script
+            # Appends the transcripted image text to the end of the description
+            if soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
+                desc_string += soup.find('div[class*="Transcript__TranscriptContent-sc-"]')
+
             # Add a loop to gather the breadcrumb name of a page
             # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
             # Javascript parser for identifying specific breadcrumbs
@@ -224,9 +229,9 @@ for x in range(incrementer, 4000000):
                 for n in m_text:
                     if '"parentSubject":' in n:
                         category = n  # Get subject name from script
-
             match = re.search(r':"(.*?)"', category)  # Apply regex to grab only second word
-            category = match.group(1)
+            category = match.group(1)  # remove quotes
+
             # Fill the csv file with the gathered title, description, and category
             write_row(q_number, title_string, desc_string, category)
 
