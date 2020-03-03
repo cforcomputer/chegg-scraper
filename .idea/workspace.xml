@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/drivers/chromedriver" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/drivers/chromedriver.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/chegg-scraper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/chegg-scraper.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chromedriver.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +38,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/chromedriver-scraper.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -128,6 +134,9 @@
       <workItem from="1582075919057" duration="408000" />
       <workItem from="1582159804320" duration="70466000" />
       <workItem from="1582717709997" duration="7994000" />
+      <workItem from="1582934368764" duration="865000" />
+      <workItem from="1582935259483" duration="408000" />
+      <workItem from="1582946037089" duration="270000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
@@ -280,6 +289,10 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state width="886" height="358" key="GridCell.Tab.1.right/66.0.1854.1080@66.0.1854.1080" timestamp="1582648863975" />
+    <state x="187" y="32" key="SettingsEditor" timestamp="1582935234738">
+      <screen x="0" y="25" width="1366" height="743" />
+    </state>
+    <state x="187" y="32" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1582935234738" />
     <state x="121" y="276" key="Vcs.Push.Dialog.v2" timestamp="1582826560439">
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
@@ -288,9 +301,10 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state width="470" height="540" key="XDebugger.FullValuePopup/66.0.1854.1080@66.0.1854.1080" timestamp="1582176554203" />
-    <state x="694" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1581726674408">
-      <screen x="66" y="0" width="1854" height="1080" />
+    <state x="463" y="275" key="com.intellij.ide.util.TipDialog" timestamp="1582926433720">
+      <screen x="0" y="25" width="1366" height="743" />
     </state>
+    <state x="463" y="275" key="com.intellij.ide.util.TipDialog/0.25.1366.743@0.25.1366.743" timestamp="1582926433720" />
     <state x="694" y="364" key="com.intellij.ide.util.TipDialog/66.0.1854.1080@66.0.1854.1080" timestamp="1581726674408" />
     <state x="195" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1582435769068">
       <screen x="66" y="0" width="1854" height="1080" />
@@ -298,8 +312,8 @@
     <state x="195" y="240" width="672" height="678" key="search.everywhere.popup/66.0.1854.1080@66.0.1854.1080" timestamp="1582435769068" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/chegg_scraper$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1582880560903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/chegg_scraper$chromedriver_scraper.coverage" NAME="chromedriver-scraper Coverage Results" MODIFIED="1582433067915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/chegg_scraper$main.coverage" NAME="scraper Coverage Results" MODIFIED="1581969739860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/chegg_scraper$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1582880560903" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

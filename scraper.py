@@ -146,7 +146,7 @@ opts = Options()
 opts.add_argument("Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)")
 opts.add_argument("--window-size=1920,1080")
 opts.add_extension("extension_1_4_0_0.crx")
-chrome_browser = webdriver.Chrome(options=opts, executable_path='chromedriver.exe')
+chrome_browser = webdriver.Chrome(options=opts, executable_path='drivers/chromedriver')
 
 
 # This method uses selenium to extract the html from the page and preserve the session cookies
