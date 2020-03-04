@@ -14,4 +14,13 @@ Iteration interrupted at question: 3823426object of type 'NoneType' has no len()
 Iteration interrupted at question: 6373427[Errno 13] Permission denied: 'export/questions.csv'
 
 @2020-02-27 00:39:57.391968
-Iteration interrupted at question: 31873437
+Iteration interrupted at question: 31873437object of type 'NoneType' has no len()
+
+@2020-03-02 21:23:35.080692
+Iteration interrupted at question: 2372692object of type 'NoneType' has no len()
+
+@2020-03-02 21:25:37.668303
+Iteration interrupted at question: 2372692object of type 'NoneType' has no len()
+
+@2020-03-02 21:33:03.937786
+Iteration interrupted at question: 2372692
