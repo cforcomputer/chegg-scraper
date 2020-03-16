@@ -107,7 +107,7 @@
       <workItem from="1582935259483" duration="408000" />
       <workItem from="1582946037089" duration="270000" />
       <workItem from="1583202505156" duration="7121000" />
-      <workItem from="1583450357066" duration="819000" />
+      <workItem from="1583450357066" duration="1790000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
@@ -179,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582826559153</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Latest changes before pushing changing webdriver to firefox.">
+      <created>1583451362639</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1583451362639</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +204,8 @@
     <MESSAGE value="Effectively collects pages and uses the random list.&#10;&#10;Needs to implement:&#10;1. 'Show transcribed image text' to be recognizes and then instruct to parse the image text&#10;2. Retrieving the iteration version from the text file and using that for later runs&#10;3. Recognizing and a captcha on a page, then pausing the program and wait for user input&#10;4. Once the captcha is solved, the program automatically(?) continues and the cookie is saved to a file and used on all sequential pages." />
     <MESSAGE value="Experimenting with uMatrix_1.4.1b6.firefox.signed.xpi to block PerimeterX bot detection javascript when scraping sessions.&#10;&#10;Still need to log in if scraping answers.&#10;&#10;Added reading from incrementer, fixed output to csv from x to incrementer." />
     <MESSAGE value="This is a now fully working due to umatrix blocking perimeterx js tracking. Code needs to be simplified down now that human behavior emulation is no longer necessary, neither is random question selection." />
-    <option name="LAST_COMMIT_MESSAGE" value="This is a now fully working due to umatrix blocking perimeterx js tracking. Code needs to be simplified down now that human behavior emulation is no longer necessary, neither is random question selection." />
+    <MESSAGE value="Latest changes before pushing changing webdriver to firefox." />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest changes before pushing changing webdriver to firefox." />
   </component>
   <component name="WindowStateProjectService">
     <state x="585" y="198" key="#Notifications" timestamp="1582789992317">
@@ -222,9 +230,10 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state x="259" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.0.1854.1080@66.0.1854.1080" timestamp="1581837014952" />
-    <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2" timestamp="1582826557279">
-      <screen x="66" y="0" width="1854" height="1080" />
+    <state x="682" y="101" width="799" height="855" key="CommitChangelistDialog2" timestamp="1583451362035">
+      <screen x="0" y="25" width="1366" height="743" />
     </state>
+    <state x="682" y="101" key="CommitChangelistDialog2/0.25.1366.743@0.25.1366.743" timestamp="1583451362035" />
     <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826557279" />
     <state x="521" y="233" width="428" height="509" key="FileChooserDialogImpl" timestamp="1583204247879">
       <screen x="0" y="25" width="1366" height="743" />
@@ -271,9 +280,10 @@
       <screen x="0" y="25" width="1366" height="743" />
     </state>
     <state x="187" y="32" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1582935234738" />
-    <state x="121" y="276" key="Vcs.Push.Dialog.v2" timestamp="1582826560439">
-      <screen x="66" y="0" width="1854" height="1080" />
+    <state x="41" y="215" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1583451365778">
+      <screen x="0" y="25" width="1366" height="743" />
     </state>
+    <state x="41" y="215" width="804" height="548" key="Vcs.Push.Dialog.v2/0.25.1366.743@0.25.1366.743" timestamp="1583451365778" />
     <state x="121" y="276" key="Vcs.Push.Dialog.v2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826560439" />
     <state width="470" height="540" key="XDebugger.FullValuePopup" timestamp="1582176554203">
       <screen x="66" y="0" width="1854" height="1080" />
