@@ -2,21 +2,21 @@ import atexit
 import base64
 import csv
 import os.path
-from os import path
+import pickle
 import random
 import re
 import sys
 import time
 from datetime import datetime
-import pickle
-import numpy as np
+from os import path
 
+import numpy as np
 # BeautifulSoup imports
 from bs4 import BeautifulSoup
 # Selenium imports
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.chrome.options import Options
 
 
 # Retrieve the last of numbers
@@ -100,7 +100,7 @@ opts = Options()
 opts.add_argument("Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)")
 opts.add_argument("--window-size=320,200")
 opts.add_extension("umatrix/extension_1_4_0_0.crx")
-chrome_browser = webdriver.Chrome(options=opts, executable_path='drivers/chromedriver')
+chrome_browser = webdriver.Chrome(options=opts, executable_path='drivers/chromedriver_linux64_81/chromedriver')
 
 
 # This method uses selenium to extract the html from the page and preserve the session cookies
