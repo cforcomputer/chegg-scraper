@@ -243,11 +243,12 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state x="259" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.0.1854.1080@66.0.1854.1080" timestamp="1581837014952" />
-    <state x="682" y="101" width="799" height="855" key="CommitChangelistDialog2" timestamp="1583451362035">
-      <screen x="0" y="25" width="1366" height="743" />
+    <state x="441" y="27" width="1083" height="1053" key="CommitChangelistDialog2" timestamp="1584947918575">
+      <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="682" y="101" key="CommitChangelistDialog2/0.25.1366.743@0.25.1366.743" timestamp="1583451362035" />
     <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826557279" />
+    <state x="441" y="27" width="1083" height="1053" key="CommitChangelistDialog2/70.27.1850.1053@70.27.1850.1053" timestamp="1584947918575" />
     <state x="521" y="233" width="428" height="509" key="FileChooserDialogImpl" timestamp="1583204247879">
       <screen x="0" y="25" width="1366" height="743" />
     </state>
@@ -298,11 +299,12 @@
     </state>
     <state x="187" y="32" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1582935234738" />
     <state x="323" y="37" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1584516397981" />
-    <state x="41" y="215" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1583451365778">
-      <screen x="0" y="25" width="1366" height="743" />
+    <state x="157" y="170" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1584947952906">
+      <screen x="70" y="27" width="1850" height="1053" />
     </state>
     <state x="41" y="215" width="804" height="548" key="Vcs.Push.Dialog.v2/0.25.1366.743@0.25.1366.743" timestamp="1583451365778" />
     <state x="121" y="276" key="Vcs.Push.Dialog.v2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826560439" />
+    <state x="157" y="170" key="Vcs.Push.Dialog.v2/70.27.1850.1053@70.27.1850.1053" timestamp="1584947952906" />
     <state width="470" height="540" key="XDebugger.FullValuePopup" timestamp="1582176554203">
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
