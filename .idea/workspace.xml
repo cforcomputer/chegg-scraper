@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/drivers/chromedriver_linux64_79/chromedriver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drivers/chromedriver_linux64_79_old/chromedriver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drivers/chromedriver_linux64_80/chromedriver" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/drivers/chromedriver_linux64_81/chromedriver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/chegg-scraper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/chegg-scraper.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drivers/chromedriver" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/error_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/export/error_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/export/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/export/questions.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/incrementer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/incrementer.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
-    </list>
+    <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
