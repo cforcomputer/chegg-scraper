@@ -2,75 +2,21 @@ import atexit
 import base64
 import csv
 import os.path
-from os import path
+import pickle
 import random
 import re
 import sys
 import time
 from datetime import datetime
-import math
-import pickle
+from os import path
 
+import numpy as np
 # BeautifulSoup imports
 from bs4 import BeautifulSoup
 # Selenium imports
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.touch_actions import TouchActions
 from selenium.common.exceptions import NoSuchElementException
-
-
-# Return a randomized "range" using a Linear Congruential Generator
-# to produce the number sequence. Parameters are the same as for
-# python builtin "range".
-#   Memory  -- storage for 8 integers, regardless of parameters.
-#   Compute -- at most 2*"maximum" steps required to generate sequence.
-#
-def random_range(start, stop=None, step=None):
-    # Set a default values the same way "range" does.
-    if stop is None: start, stop = 0, start
-    if step is None: step = 1
-    # Use a mapping to convert a standard range into the desired range.
-    mapping = lambda i: (i * step) + start
-    # Compute the number of numbers in this range.
-    maximum = (stop - start) // step
-    # Seed range with a random integer.
-    value = random.randint(0, maximum)
-    #
-    # Construct an offset, multiplier, and modulus for a linear
-    # congruential generator. These generators are cyclic and
-    # non-repeating when they maintain the properties:
-    #
-    #   1) "modulus" and "offset" are relatively prime.
-    #   2) ["multiplier" - 1] is divisible by all prime factors of "modulus".
-    #   3) ["multiplier" - 1] is divisible by 4 if "modulus" is divisible by 4.
-    #
-    offset = random.randint(0, maximum) * 2 + 1  # Pick a random odd-valued offset.
-    multiplier = 4 * (maximum // 4) + 1  # Pick a multiplier 1 greater than a multiple of 4.
-    modulus = int(
-        2 ** math.ceil(math.log2(maximum)))  # Pick a modulus just big enough to generate all numbers (power of 2).
-    # Track how many random numbers have been returned.
-    found = 0
-    while found < maximum:
-        # If this is a valid value, yield it in generator fashion.
-        if value < maximum:
-            found += 1
-            yield mapping(value)
-        # Calculate the next value in the sequence.
-        value = (value * multiplier + offset) % modulus
-
-
-# Calls random range to generate a text file with the psuedo-random order
-# The sequence of numbers has no repeats
-def generate_num_range():
-    li = []
-    for v in range(1, 4000000):
-        v = 2 ** v
-        li = list(random_range(v))
-    with open('export/numberlist.data', 'wb') as filehandle:
-        # store the data as binary data stream
-        pickle.dump(li, filehandle)
+from selenium.webdriver.chrome.options import Options
 
 
 # Retrieve the last of numbers
@@ -109,8 +55,16 @@ q_number = 0
 # Incrementer for keeping track of position in list
 incrementer = 0
 
+
 # # Load incrementer file number from previous session on first run if counter file exists
 # If the path exists and file is not empty
+def generate_num_range():
+    ls = np.random.permutation(4000000)
+    with open('export/numberlist.data', 'wb') as filehandle:
+        # store the data as binary data stream
+        pickle.dump(ls, filehandle)
+
+
 if not path.exists("export/numberlist.data") or os.stat("export/numberlist.data").st_size == 0:
     generate_num_range()
     sys.exit("generated list")
@@ -144,9 +98,9 @@ def writer(string_var):
 # Must be outside 'collect_page()' so that a new instance is not created for each iteration
 opts = Options()
 opts.add_argument("Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)")
-opts.add_argument("--window-size=1920,1080")
-opts.add_extension("extension_1_4_0_0.crx")
-chrome_browser = webdriver.Chrome(options=opts, executable_path='chromedriver.exe')
+opts.add_argument("--window-size=320,200")
+opts.add_extension("umatrix/extension_1_4_0_0.crx")
+chrome_browser = webdriver.Chrome(options=opts, executable_path='drivers/chromedriver_linux64_81/chromedriver')
 
 
 # This method uses selenium to extract the html from the page and preserve the session cookies
@@ -169,15 +123,6 @@ def collect_page():
         # Faking user interactions
         element_to_hover_over = chrome_browser.find_element_by_xpath("/html/body/div[1]/div[4]/oc-component/div["
                                                                      "1]/div/div[1]/div")
-        # ActionChains(chrome_browser).move_to_element(element_to_hover_over).perform()
-        # time.sleep(random.uniform(0.5, 1))
-        # ActionChains(chrome_browser).click()
-        # time.sleep(random.uniform(0.5, 1))
-        # -- umatrix testing
-        # scroll_down_arrow = chrome_browser.find_element_by_xpath("/html/body/div[1]/div[4]/oc-component/div["
-        # "1]/div/nav/ul/li[11]/a/span")
-        # TouchActions(chrome_browser).long_press(scroll_down_arrow)
-
         content = chrome_browser.page_source  # grab html from the page
         return content  # method then returns the html content of the page
     except NoSuchElementException:
