@@ -38,4 +38,16 @@ Iteration interrupted at question: 2372692object of type 'NoneType' has no len()
 Iteration interrupted at question: 2372692object of type 'NoneType' has no len()
 
 @2020-03-18 01:16:56.986119
-Iteration interrupted at question: 1498720
+Iteration interrupted at question: 1498720[WinError 87] The parameter is incorrect
+
+@2020-03-25 23:22:43.951165
+Iteration interrupted at question: 0Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home
+
+
+@2020-03-26 00:46:47.087152
+Iteration interrupted at question: 0name 'x' is not defined
+
+@2020-03-26 16:14:37.554483
+name 'x' is not defined
+
+@2020-03-26 16:15:33.865339
