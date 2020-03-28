@@ -18,26 +18,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 
 
-# Counter value in start_program()
-global x  # set to 0
-
-# Variable used to set the operating system
-new_os_input = 'drivers/chromedriver_windows64/chromedriver.exe'
-
-
-# Sets check to see if the loop should continue
-def loop_check(c):
-    global check
-    check = c
-
-
 # Run program
 def main():
-    # Variable used to see if main should continue running
-    global check
-
-    while check:
-        menu()
+    menu()
 
 
 # Save increment counter to file to be recovered after system reopened
@@ -49,16 +32,16 @@ def save_counter(number_to_save):
 # This method encodes title and description into base64 to preserve line breaks
 # and special characters.
 # It also solves the problem of csv writer defaulting ',' as "new row" delimiter
-def write_row(number, title, description, category):
+def write_row(number, title, description, category, q_number):
     print(number + title + description + category)
     encoded_title = base64.b64encode(title.encode())
     encoded_description = base64.b64encode(description.encode())
 
     string_var = [number, encoded_title, encoded_description, category]
-    writer(string_var)
+    writer(string_var, number)  # number = q_number
 
 
-# Helper function for writing to file
+# List to hold values for write_row
 my_fields = ['number', 'title', 'description', 'category']  # csv columns  # for DictWriter headers
 
 
@@ -74,8 +57,7 @@ def set_os(os_input):
 # title: encoded in base64, first 15 or so characters of description
 # description: encoded in base64
 # question category ie. 'Physics'
-def writer(string_var):
-    global q_number
+def writer(string_var, q_number):
     my_file = open('export/questions.csv', 'a')
     write = csv.DictWriter(my_file, fieldnames=my_fields)
 
@@ -99,7 +81,7 @@ def set_options():
 
 
 # This method uses selenium to extract the html from the page and preserve the session cookies
-def collect_page():
+def collect_page(q_number):
     try:
         # Setting the user agent
         # Sets the user agent for functions in collect_page(), which is called in the primary loop.
@@ -122,6 +104,7 @@ def collect_page():
 
 
 def start_program():
+    question_list = check_for_numberlist()
     # Should reset at the start of each loop
     title_string = ''
     desc_string = ''
@@ -130,7 +113,7 @@ def start_program():
     q_number = question_list[x]  # assign list question_list the increment [1++] to be question number
 
     # page = urlopen(req).read()  # take request and read
-    soup = BeautifulSoup(collect_page(), 'html.parser')  # parse request to html
+    soup = BeautifulSoup(collect_page(q_number), 'html.parser')  # parse request to html
 
     # save counter each loop in event of error/crash
     save_counter(x)
@@ -177,17 +160,29 @@ def start_program():
 
 # Menu for selecting which driver to use
 def menu():
+    # global new_os_input
     # Number that stores the current question number being scraped
-    global q_number  # set to 0
+    # global q_number  # set to 0
     # Incrementer for keeping track of position in list
     global incrementer  # set to 0
-    incrementer = 0
+    # Counter value in start_program()
+    global x  # set to 0
+
+    # Set default operating system at start to windows
+    set_os('drivers/chromedriver_windows64/chromedriver.exe')
+    try:
+        incrementer = check_for_incrementer()  # return the current increment value if it exists
+    except FileNotFoundError:
+        print("Incrementer file does not exist")
+        incrementer = 0
     q_number = 0
+    x = 0
+
     print("************WELCOME TO CHEGGSCRAPER************")
     print()
     choice = input("""
      S: Start program
-     B: Manually set counter position
+     B: Manually set x counter position
      M: Set Operating System
      Q: Quit
      """)
@@ -228,8 +223,11 @@ def menu():
         try:
             num_to_save = input("Enter the new increment value: ")
             save_counter(num_to_save)
-        except Exception as e:
-            print("Please enter a number")
+            print("Saved " + num_to_save + " to file")
+            menu()
+        except ValueError as e:
+            print("Please enter an integer 0-10000000")
+            menu()
 
     elif choice == "M" or choice == "m":
         choice = input("Please select operating environment\n"
@@ -251,6 +249,31 @@ def menu():
         menu()
 
 
+# should be called once when the program runs
+# Checks to see if numberlist.data exists, if it does, then set question_list to the
+# return value of read_next_question_list
+def check_for_numberlist():
+    # If the path doesn't exist, or file empty --> call generate a range of random numbers
+    #
+    if not path.exists("export/numberlist.data") or os.stat("export/numberlist.data").st_size == 0:
+        generate_num_range()
+        print("***generated list***")
+        menu()
+    else:
+        print("Reading existing list")
+        question_list = read_next_question_list()  # instance access for random number list
+        return question_list
+
+
+def check_for_incrementer():
+    # Load previous iteration if it exists
+    if path.exists("incrementer.txt") and os.stat("incrementer.txt").st_size != 0:
+        m = open("incrementer.txt", "r")
+        incrementer = int(m.readline())  # read the line - c
+        m.close()
+        return incrementer
+
+
 # Retrieve the last of numbers
 # Returns a list with the 4 million different numbers
 def read_next_question_list():
@@ -268,21 +291,6 @@ def generate_num_range():
         # store the data as binary data stream
         pickle.dump(ls, filehandle)
 
-
-# If the path doesn't exist, or file empty --> call generate a range of random numbers
-#
-if not path.exists("export/numberlist.data") or os.stat("export/numberlist.data").st_size == 0:
-    generate_num_range()
-    print("***generated list***")
-    menu()
-else:
-    question_list = read_next_question_list()  # instance access for random number list
-
-    # Load previous iteration if it exists
-    if path.exists("incrementer.txt") and os.stat("incrementer.txt").st_size != 0:
-        m = open("incrementer.txt", "r")
-        incrementer = int(m.readline())
-        m.close()
 
 if __name__ == '__main__':
     main()

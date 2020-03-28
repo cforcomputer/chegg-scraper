@@ -51,3 +51,10 @@ Iteration interrupted at question: 0name 'x' is not defined
 name 'x' is not defined
 
 @2020-03-26 16:15:33.865339
+name 'x' is not defined
+
+@2020-03-26 16:26:20.743029
+Iteration interrupted at question: 0name 'question_list' is not defined
+
+@2020-03-27 00:07:58.055642
+Iteration interrupted at question: 0
