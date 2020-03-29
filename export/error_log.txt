@@ -72,4 +72,28 @@ Iteration interrupted at question: 2920194name 'x' is not defined
 Iteration interrupted at question: 2920194name 'x' is not defined
 
 @2020-03-28 14:28:13.673291
-Iteration interrupted at question: 2920194
+Iteration interrupted at question: 2920194name 'x' is not defined
+
+@2020-03-28 17:34:47.008180
+Iteration interrupted at question: 2920194ufunc 'add' did not contain a loop with signature matching types (dtype('<U363'), dtype('<U363')) -> dtype('<U363')
+
+@2020-03-28 17:41:01.478435
+Iteration interrupted at question: 2920194ufunc 'add' did not contain a loop with signature matching types (dtype('<U363'), dtype('<U363')) -> dtype('<U363')
+
+@2020-03-28 17:43:03.237432
+Iteration interrupted at question: 2920194ufunc 'add' did not contain a loop with signature matching types (dtype('<U363'), dtype('<U363')) -> dtype('<U363')
+
+@2020-03-28 17:45:21.209490
+Iteration interrupted at question: 2920194'<=' not supported between instances of 'str' and 'int'
+
+@2020-03-28 17:47:52.657544
+Iteration interrupted at question: 2920194'NoneType' object has no attribute 'group'
+
+@2020-03-28 17:53:06.520400
+Iteration interrupted at question: 3738458can only concatenate str (not "NoneType") to str
+
+@2020-03-28 17:57:03.806788
+Iteration interrupted at question: 829468can only concatenate str (not "NoneType") to str
+
+@2020-03-28 18:00:42.408634
+Iteration interrupted at question: 2820152

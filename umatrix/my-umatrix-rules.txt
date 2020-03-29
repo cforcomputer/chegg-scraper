@@ -38,6 +38,7 @@ chegg.com cookielaw.org css block
 chegg.com cookielaw.org image block
 chegg.com cs.cheggcdn.com css block
 chegg.com cs.cheggcdn.com image block
+chegg.com d2vlcm61l7u1fs.cloudfront.net image block
 chegg.com d3uhujs20ekyp2.cloudfront.net css block
 chegg.com d3uhujs20ekyp2.cloudfront.net image block
 chegg.com npm.cheggcdn.com css block

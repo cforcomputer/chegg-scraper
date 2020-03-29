@@ -18,15 +18,10 @@ from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from fake_useragent import UserAgent
+from selenium.webdriver.common.keys import Keys
 
 ua = UserAgent()
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))  # get project directory
-global oper_os  # os selector
-
-
-# Run program
-def main():
-    menu()
 
 
 # Save increment counter to file to be recovered after system reopened
@@ -54,9 +49,7 @@ my_fields = ['number', 'title', 'description', 'category']  # csv columns  # for
 # Set the string value for the operating system to be used
 def set_os(os_input, option):
     global new_os_input
-    global oper_os
     new_os_input = os_input
-    oper_os = option
     print("New OS set to: " + new_os_input)
 
 
@@ -66,6 +59,7 @@ def set_os(os_input, option):
 # description: encoded in base64
 # question category ie. 'Physics'
 def writer(string_var, q_number):
+    q_number = int(q_number)
     my_file = open('export/questions.csv', 'a')
     write = csv.DictWriter(my_file, fieldnames=my_fields)
 
@@ -93,13 +87,14 @@ def set_options():
     # switch to iframe to be able to access the user settings
     frame = chrome_browser.find_element_by_xpath('/html/body/iframe')
     chrome_browser.switch_to.frame(frame)
-    # upload user settings
-    importer = chrome_browser.find_element_by_id("importButton")
-    importer.clear()
-    if oper_os == 1:  # windows
-        importer.send_keys(ROOT_DIR + '\\umatrix\\my-umatrix-rules.txt')
-    elif oper_os == 2:  # if linux
-        importer.send_keys(ROOT_DIR + '/umatrix/my-umatrix-rules.txt')
+    # select box to add changes, clear all and import settings
+    settings_window = chrome_browser.find_element_by_xpath("/html/body/div[2]/div[2]/div/div[3]"
+                                                           "/div/div[5]/div[1]/div/div/div/div[5]")
+    settings_window.send_keys(Keys.CONTROL + "a")
+    settings_window.send_keys(Keys.DELETE)
+    w = open("umatrix/my-umatrix-rules.txt", "r")
+    settings_window.send_keys(w.read())
+    chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
 
     chrome_browser.find_element_by_id("commitButton").click()  # commit changes
 
@@ -128,6 +123,7 @@ def collect_page(q_number):
 
 
 def start_program():
+    global x
     q_number = 0
     x = 0
 
@@ -165,32 +161,32 @@ def start_program():
                     # Concat. each separate string to fill one row
                     desc_string += EachDescription.get_text(strip=True)
 
-            # Prototyping finding the transcript script
-            # Appends the transcribed image text to the end of the description
-            if soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
-                desc_string += soup.find('div[class*="Transcript__TranscriptContent-sc-"]')
+                # Prototyping finding the transcript script
+                # Appends the transcribed image text to the end of the description
+                if soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
+                    if desc_string is None:
+                        desc_string = "Transcribed: "
+                    desc_string += soup.find('div[class*="Transcript__TranscriptContent-sc-"]')
 
-            # Add a loop to gather the breadcrumb name of a page
-            # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
-            # Javascript parser for identifying specific breadcrumbs
-            # Param result = string containing breadcrumb script
-            scripts = soup.find_all("script")
-            category = ''
-            for script in scripts:
-                text = script.text
-                m_text = text.split(',')
-                for n in m_text:
-                    if '"parentSubject":' in n:
-                        category = n  # Get subject name from script
-            match = re.search(r':"(.*?)"', category)  # Apply regex to grab only second word
-            category = match.group(1)  # remove quotes
+                # Add a loop to gather the breadcrumb name of a page
+                # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
+                # Javascript parser for identifying specific breadcrumbs
+                # Param result = string containing breadcrumb script
+                scripts = soup.find_all("script")
+                category = ''
+                for script in scripts:
+                    text = script.text
+                    m_text = text.split(',')
+                    for n in m_text:
+                        if '"parentSubject":' in n:
+                            category = n  # Get subject name from script
+                match = re.search(r':"(.*?)"', category)  # Apply regex to grab only second word
+                category = match.group(1)  # remove quotes
+                # Fill the csv file with the gathered title, description, and category
+                write_row(str(q_number), title_string, desc_string, category)
 
-            print(q_number + title_string + desc_string + category)
-            # Fill the csv file with the gathered title, description, and category
-            write_row(q_number, title_string, desc_string, category)
-
-        else:  # Otherwise move to the next function
-            pass
+            else:  # Otherwise move to the next function
+                pass
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -321,4 +317,4 @@ def generate_num_range():
 if __name__ == '__main__':
     # Set default operating system at start to windows
     set_os('drivers/chromedriver_windows64/chromedriver.exe', 1)
-    main()
+    menu()
