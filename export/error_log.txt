@@ -57,4 +57,19 @@ name 'x' is not defined
 Iteration interrupted at question: 0name 'question_list' is not defined
 
 @2020-03-27 00:07:58.055642
-Iteration interrupted at question: 0
+Iteration interrupted at question: 0'NoneType' object has no attribute 'group'
+
+@2020-03-28 13:31:53.184109
+Iteration interrupted at question: 0ufunc 'add' did not contain a loop with signature matching types (dtype('<U363'), dtype('<U363')) -> dtype('<U363')
+
+@2020-03-28 13:33:24.678108
+Iteration interrupted at question: 0name 'x' is not defined
+
+@2020-03-28 14:03:48.710050
+Iteration interrupted at question: 2920194name 'x' is not defined
+
+@2020-03-28 14:16:40.236706
+Iteration interrupted at question: 2920194name 'x' is not defined
+
+@2020-03-28 14:28:13.673291
+Iteration interrupted at question: 2920194

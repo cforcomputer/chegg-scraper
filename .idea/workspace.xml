@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="Broke up everything into separate methods for increased modularity. &#10;Breaking up everything into modules had the unfortunate side effect of breaking the ability for the program to write to a csv file.&#10;&#10;Currently working to restore functionality to the software while maintaining the modularity for future improvements.">
+      <change afterPath="$PROJECT_DIR$/umatrix/my-umatrix-rules.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/export/error_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/export/error_log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/incrementer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/incrementer.txt" afterDir="false" />
@@ -115,7 +115,7 @@
       <workItem from="1584516331623" duration="3118000" />
       <workItem from="1584946869330" duration="650000" />
       <workItem from="1585199050277" duration="6219000" />
-      <workItem from="1585206796605" duration="11539000" />
+      <workItem from="1585206796605" duration="23904000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
@@ -257,32 +257,32 @@
     </state>
     <state x="521" y="233" width="428" height="509" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1583204247879" />
     <state x="773" y="303" key="FileChooserDialogImpl/66.0.1854.1080@66.0.1854.1080" timestamp="1581895761094" />
-    <state width="1815" height="292" key="GridCell.Tab.0.bottom" timestamp="1585293270062">
+    <state width="1815" height="292" key="GridCell.Tab.0.bottom" timestamp="1585440633970">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.bottom/0.25.1366.743@0.25.1366.743" timestamp="1583213579511" />
-    <state width="1815" height="292" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1585293270062" />
+    <state width="1815" height="292" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1585440633970" />
     <state width="1811" height="294" key="GridCell.Tab.0.bottom/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
-    <state width="1815" height="292" key="GridCell.Tab.0.center" timestamp="1585293270062">
+    <state width="1815" height="292" key="GridCell.Tab.0.center" timestamp="1585440633970">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.center/0.25.1366.743@0.25.1366.743" timestamp="1583213579511" />
-    <state width="1815" height="292" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1585293270062" />
+    <state width="1815" height="292" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1585440633970" />
     <state width="1811" height="294" key="GridCell.Tab.0.center/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
-    <state width="1815" height="292" key="GridCell.Tab.0.left" timestamp="1585293270062">
+    <state width="1815" height="292" key="GridCell.Tab.0.left" timestamp="1585440633970">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.left/0.25.1366.743@0.25.1366.743" timestamp="1583213579510" />
-    <state width="1815" height="292" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1585293270062" />
+    <state width="1815" height="292" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1585440633970" />
     <state width="1811" height="294" key="GridCell.Tab.0.left/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
-    <state width="1815" height="292" key="GridCell.Tab.0.right" timestamp="1585293270062">
+    <state width="1815" height="292" key="GridCell.Tab.0.right" timestamp="1585440633970">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.right/0.25.1366.743@0.25.1366.743" timestamp="1583213579511" />
-    <state width="1815" height="292" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1585293270062" />
+    <state width="1815" height="292" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1585440633970" />
     <state width="1811" height="294" key="GridCell.Tab.0.right/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
     <state width="886" height="358" key="GridCell.Tab.1.bottom" timestamp="1582648863975">
@@ -331,6 +331,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/chegg_scraper$chromedriver_scraper.coverage" NAME="chromedriver-scraper Coverage Results" MODIFIED="1582433067915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/chegg_scraper$main.coverage" NAME="scraper Coverage Results" MODIFIED="1583213579499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/chegg_scraper$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1585293270057" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/chegg_scraper$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1585440633964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

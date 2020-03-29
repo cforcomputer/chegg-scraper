@@ -1,0 +1,55 @@
+https-strict: behind-the-scene false
+matrix-off: about-scheme true
+matrix-off: behind-the-scene true
+matrix-off: chrome-extension-scheme true
+matrix-off: chrome-scheme true
+matrix-off: moz-extension-scheme true
+matrix-off: opera-scheme true
+matrix-off: uwb.edu true
+matrix-off: vivaldi-scheme true
+matrix-off: wyciwyg-scheme true
+noscript-spoof: * true
+referrer-spoof: * true
+referrer-spoof: behind-the-scene false
+* * * block
+* * css allow
+* * frame block
+* * image allow
+* 1st-party * allow
+* 1st-party frame allow
+chegg.com adobetps.chegg.com cookie block
+chegg.com adobetps.chegg.com css block
+chegg.com adobetps.chegg.com frame block
+chegg.com adobetps.chegg.com image block
+chegg.com adobetps.chegg.com media block
+chegg.com adobetps.chegg.com other block
+chegg.com adobetps.chegg.com script block
+chegg.com adobetps.chegg.com xhr block
+chegg.com c.cheggcdn.com css block
+chegg.com c.cheggcdn.com image block
+chegg.com cdn.cookielaw.org css block
+chegg.com cdn.cookielaw.org image block
+chegg.com clicktale.net css block
+chegg.com clicktale.net image block
+chegg.com components.cheggcdn.com css block
+chegg.com connect.facebook.net css block
+chegg.com connect.facebook.net image block
+chegg.com cookielaw.org css block
+chegg.com cookielaw.org image block
+chegg.com cs.cheggcdn.com css block
+chegg.com cs.cheggcdn.com image block
+chegg.com d3uhujs20ekyp2.cloudfront.net css block
+chegg.com d3uhujs20ekyp2.cloudfront.net image block
+chegg.com npm.cheggcdn.com css block
+chegg.com npm.cheggcdn.com image block
+chegg.com ws22.chegg.com cookie block
+chegg.com ws22.chegg.com css block
+chegg.com ws22.chegg.com frame block
+chegg.com ws22.chegg.com image block
+chegg.com ws22.chegg.com media block
+chegg.com ws22.chegg.com other block
+chegg.com ws22.chegg.com script block
+chegg.com ws22.chegg.com xhr block
+chegg.com www.facebook.com image block
+chegg.com www.google.com css block
+chegg.com www.google.com image block
