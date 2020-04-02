@@ -7,6 +7,7 @@ import random
 import re
 import sys
 import time
+import urllib.request
 from datetime import datetime
 from os import path
 
@@ -17,15 +18,15 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
-from fake_useragent import UserAgent
+# from fake_useragent import UserAgent
 from selenium.webdriver.common.keys import Keys
 
-ua = UserAgent()
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))  # get project directory
+
+# ua = UserAgent()
 
 
 # Save increment counter to file to be recovered after system reopened
-def save_counter(number_to_save):
+def save_options(number_to_save):
     w = open("incrementer.txt", "w")
     w.write(str(number_to_save))
 
@@ -33,17 +34,35 @@ def save_counter(number_to_save):
 # This method encodes title and description into base64 to preserve line breaks
 # and special characters.
 # It also solves the problem of csv writer defaulting ',' as "new row" delimiter
-def write_row(number, title, description, category):
-    print(number + title + description + category)
-    encoded_title = base64.b64encode(title.encode())
-    encoded_description = base64.b64encode(description.encode())
+def write_row(number, title, description, category, answer):
+    try:
+        encoded_title = base64.b64encode(title.encode())
+        # If only transcribed and rest blank, no transcription
+        if description is None:
+            encoded_description = ""
+        elif description == "Show transcribed image text":
+            encoded_description = ""
+        else:  # Otherwise encode the full description
+            encoded_description = base64.b64encode(description.encode())
 
-    string_var = [number, encoded_title, encoded_description, category]
-    writer(string_var, number)  # number = q_number
+        if answer == "":
+            encoded_answer = ""
+        else:
+            encoded_answer = base64.b64encode(answer.encode())
+        string_var = [number, encoded_title, encoded_description, category, encoded_answer]
+        writer(string_var, number)  # number = q_number
+
+    except PermissionError:
+        print('Document open, cannot write. Now sleeping for 15 seconds')
+        a = 15
+        while a != 0:
+            print(a)
+            time.sleep(1)
+            a = a - 1
 
 
 # List to hold values for write_row
-my_fields = ['number', 'title', 'description', 'category']  # csv columns  # for DictWriter headers
+my_fields = ['number', 'title', 'description', 'category', 'answer']  # csv columns  # for DictWriter headers
 
 
 # Set the string value for the operating system to be used
@@ -61,17 +80,19 @@ def set_os(os_input, option):
 def writer(string_var, q_number):
     q_number = int(q_number)
     my_file = open('export/questions.csv', 'a')
-    write = csv.DictWriter(my_file, fieldnames=my_fields)
+    write = csv.DictWriter(my_file, fieldnames=my_fields, lineterminator='\n')
 
     if q_number <= 1 or os.stat("export/questions.csv").st_size == 0:
         write.writeheader()
 
     write.writerow({'number': f'{string_var[0]}', 'title': f'{string_var[1]}', 'description': f'{string_var[2]}',
-                    'category': f'{string_var[3]}'})
+                    'category': f'{string_var[3]}', 'answer': f'{string_var[4]}'})
 
 
-def set_options():
+def set_options(sign_in):
     global chrome_browser
+    global rules
+    rules = "umatrix/scraping-rules.txt"
     # Perform all functions required to gather the html of a page while avoiding bot detection
     # Must be outside 'collect_page()' so that a new instance is not created for each iteration
     opts = Options()
@@ -81,6 +102,11 @@ def set_options():
     opts.add_extension("umatrix/extension_1_4_0_0.crx")
     browser = webdriver.Chrome(options=opts, executable_path=new_os_input)
     chrome_browser = browser
+    # If the user selected the sign on attempt
+    umatrix_rule_set(sign_in, chrome_browser)  # Set the umatrix rule list depending on login
+
+
+def umatrix_rule_set(sign_in, chrome_browser):
     # Set uMatrix session settings
     # Navigate to uMatrix session settings page
     chrome_browser.get("chrome-extension://ogfcmafjalglgifnmanfmnieipoejdcf/dashboard.html#user-rules")
@@ -92,11 +118,41 @@ def set_options():
                                                            "/div/div[5]/div[1]/div/div/div/div[5]")
     settings_window.send_keys(Keys.CONTROL + "a")
     settings_window.send_keys(Keys.DELETE)
-    w = open("umatrix/my-umatrix-rules.txt", "r")
-    settings_window.send_keys(w.read())
-    chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
 
-    chrome_browser.find_element_by_id("commitButton").click()  # commit changes
+    try:
+        if sign_in:
+            w = open("umatrix/login-rules.txt", "r")
+            settings_window.send_keys(w.read())
+            chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
+            chrome_browser.find_element_by_id("commitButton").click()  # commit changes
+            login(chrome_browser)
+            umatrix_rule_set(False, chrome_browser)  # After logging in, set default web scraping list
+        else:
+            w = open("umatrix/scraping-rules.txt", "r")
+            settings_window.send_keys(w.read())
+            chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
+            chrome_browser.find_element_by_id("commitButton").click()  # commit changes
+    except Exception as e:
+        print(e)
+        print("Error logging in")
+        menu()
+
+
+# This method is for logging in to chegg to scrape answers if paid account is available
+# currently WIP
+def login(chrome_browser):
+    global username
+    global password
+    username = "patjobri@gmail.com"
+    password = "24Jx%hgXLzIr^nr7"
+    chrome_browser.get("https://www.chegg.com/auth?action=login")  # Login page
+    chrome_browser.find_element_by_id("emailForSignIn").send_keys(username)
+    chrome_browser.find_element_by_id("passwordForSignIn").send_keys(password)
+
+    # Element clicks are being intercepted so it needs javascript to work
+    element = chrome_browser.find_element_by_xpath("//button[starts-with(@type,'submit')]")
+    chrome_browser.execute_script("arguments[0].click();", element)
+    time.sleep(10)
 
 
 # This method uses selenium to extract the html from the page and preserve the session cookies
@@ -114,7 +170,6 @@ def collect_page(q_number):
         url = 'https://www.chegg.com/homework-help/questions-and-answers/q' + str(q_number)  # Define URL
         chrome_browser.get(url)  # the url
         print(str(x) + " - Scraping: " + url)
-        # time.sleep(random.uniform(0.5, 1))
 
         content = chrome_browser.page_source  # grab html from the page
         return content  # method then returns the html content of the page
@@ -122,8 +177,11 @@ def collect_page(q_number):
         print("Failed to implement anti-detection measures; missing element (or recaptcha present)\n")
 
 
+# For parsing the webpage if the page is q&a
 def start_program():
     global x
+    global upperbound
+    upperbound = 4000000
     q_number = 0
     x = 0
 
@@ -135,23 +193,26 @@ def start_program():
 
     question_list = check_for_numberlist()
     # Should reset at the start of each loop
-    title_string = ''
-    desc_string = ''
+    title_string = ''  # holds question title
+    desc_string = ''  # question description
+    ans_string = ''  # question answer
 
     try:
         # current_question = read_increment_to_use()  # find a random question to scrape (no duplicates)
-        for x in range(incrementer, 4000000):
+        for x in range(incrementer, upperbound):
             q_number = question_list[x]  # assign list question_list the increment [1++] to be question number
 
             # page = urlopen(req).read()  # take request and read
             soup = BeautifulSoup(collect_page(q_number), 'html.parser')  # parse request to html
 
             # save counter each loop in event of error/crash
-            save_counter(x)
+            save_options(x)
 
             # Find the question title
-            if soup.select('h1[class*="PageHeading-"]'):  # if the page is a q&a page
+            if soup.select('h1[class*="PageHeading-"]') or \
+                    soup.select('span[class*="question-text question-header-span"]'):  # if the page is a q&a page
 
+                # select the title
                 for EachTitle in soup.select('h1[class*="PageHeading-"]'):
                     # Concat. each separate string to fill one row
                     title_string += EachTitle.get_text(strip=True)
@@ -165,8 +226,13 @@ def start_program():
                 # Appends the transcribed image text to the end of the description
                 if soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
                     if desc_string is None:
-                        desc_string = "Transcribed: "
-                    desc_string += soup.find('div[class*="Transcript__TranscriptContent-sc-"]')
+                        for row in soup.find_all('div[class*="Transcript__TranscriptContent-sc-"]'):
+                            row = row.text
+                            desc_string = row
+                    else:
+                        for row in soup.find_all('div[class*="Transcript__TranscriptContent-sc-"]'):
+                            row = row.text
+                            desc_string += "\n" + row
 
                 # Add a loop to gather the breadcrumb name of a page
                 # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
@@ -183,7 +249,36 @@ def start_program():
                 match = re.search(r':"(.*?)"', category)  # Apply regex to grab only second word
                 category = match.group(1)  # remove quotes
                 # Fill the csv file with the gathered title, description, and category
-                write_row(str(q_number), title_string, desc_string, category)
+
+                # answer_present = False
+                # # Check to see if the answer is on the page, if it is record it and add it to the writerow
+                # if soup.select('div[class*="txt-body answer-body"]'):
+                #     answer_present = True
+                #     print("answer is present")
+                #     for row in soup.find_all('div[class*="txt-body answer-body"]'):
+                #         row = row.text
+                #         print("appending answer row.text to ans_string")
+                #         ans_string += row.text
+                # else:
+                #     print("not answered or not logged in")
+                #     ans_string = ""  # not answered or not logged in
+
+                # if answer_present:
+                #     images = []
+                #     print("Locating image")
+                #     for img in soup.find_all('img'):
+                #         img_src = img.get('src')
+                #         match = re.search(r'(https:\/\/media.cheggcdn.com\/study\/(.*))', img_src)
+                #         if match.group(1) is not None:
+                #             images.append(match.group(1))
+
+                print("Writing to write_row")
+                write_row(str(q_number), title_string, desc_string, category, ans_string)
+
+                # reset
+                title_string = ''  # holds question title
+                desc_string = ''  # question description
+                ans_string = ''  # question answer
 
             else:  # Otherwise move to the next function
                 pass
@@ -193,7 +288,7 @@ def start_program():
         print(e, exc_type, fname, exc_tb.tb_lineno)
         # Export error log to file
         m = open("export/error_log.txt", "a")
-        save_counter(x)
+        save_options(x)
         m.write(str(e))
         m.write('\n')
         m.write('\n')
@@ -218,21 +313,27 @@ def start_program():
 def menu():
     # Incrementer for keeping track of position in list
     global incrementer  # set to 0
-    # Counter value in start_program()
-    global x  # set to 0
+    global x  # Counter value in start_program(), set to 0
+    global upperbound
+    global sign_in  # login at start T/F
+    global username
+    global password
+    sign_in = True
 
     print("************WELCOME TO CHEGGSCRAPER************")
     print()
     choice = input("""
-     S: Start program
-     B: Manually set x counter position
-     M: Set Operating System
+     1: Start program
+     2: Sign in at start
+     3: Manually set x counter position
+     4: Set total number of questions to scrape
+     5: Set Operating System
      Q: Quit
      """)
     # Starting the program
-    if choice == "S" or choice == "s":
+    if choice == '1':
         try:
-            set_options()
+            set_options(sign_in)
             start_program()
             # Exception writes error to a file and saves the question on error
             # for later reference
@@ -240,11 +341,26 @@ def menu():
             print("Error starting program")
             print(e)
 
+    elif choice == '2':
+        a = input("Attempt sign in when starting program? (Y/n) ")
+        if a == "Y" or a == "y":
+            sign_in = True
+            a = input("Enter username: ")
+            username = a
+            a = input("Enter your password: ")
+            password = a
+            print("Set to true")
+            menu()
+        elif a == "N" or a == "n":
+            sign_in = False
+            print("Set to false")
+            menu()
+
     # Manually setting the x-counter position
-    elif choice == "B" or choice == "b":
+    elif choice == '3':
         try:
             num_to_save = input("Enter the new increment value: ")
-            save_counter(num_to_save)
+            save_options(num_to_save)
             print("Set " + num_to_save + " to current counter")
             menu()
         except ValueError as e:
@@ -252,7 +368,7 @@ def menu():
             print(e)
             menu()
     # Selecting the operating system specific driver
-    elif choice == "M" or choice == "m":
+    elif choice == '4':
         choice = input("Please select operating environment\n"
                        "Type the number to select\n"
                        "1. (default) Windows\n"
@@ -264,6 +380,10 @@ def menu():
             set_os("drivers/chromedriver_linux64_81/chromedriver", 2)
         else:
             menu()
+    # Setting the total number of questions to scrape
+    elif choice == '5':
+        choice = input("Enter total # of questions: ")
+        upperbound = choice
     # Quitting the program
     elif choice == "Q" or choice == "q":
         sys.exit()

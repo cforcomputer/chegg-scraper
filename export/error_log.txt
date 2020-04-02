@@ -96,4 +96,22 @@ Iteration interrupted at question: 3738458can only concatenate str (not "NoneTyp
 Iteration interrupted at question: 829468can only concatenate str (not "NoneType") to str
 
 @2020-03-28 18:00:42.408634
-Iteration interrupted at question: 2820152
+Iteration interrupted at question: 2820152can only concatenate str (not "NoneType") to str
+
+@2020-03-29 23:59:06.245024
+Iteration interrupted at question: 2911058can only concatenate str (not "NoneType") to str
+
+@2020-03-30 17:38:29.334667
+Iteration interrupted at question: 2911058can only concatenate str (not "NoneType") to str
+
+@2020-03-30 19:08:06.739272
+Iteration interrupted at question: 2911058'NoneType' object is not callable
+
+@2020-03-30 19:23:47.996966
+Iteration interrupted at question: 2911058ResultSet object has no attribute 'get_text'. You're probably treating a list of elements like a single element. Did you call find_all() when you meant to call find()?
+
+@2020-03-30 23:04:17.491758
+Iteration interrupted at question: 2911058[Errno 13] Permission denied: 'export/questions.csv'
+
+@2020-03-31 00:34:08.701661
+Iteration interrupted at question: 466399

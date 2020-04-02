@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/umatrix/login-rules.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/umatrix/scraping-rules.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/export/error_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/export/error_log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/export/questions.csv" beforeDir="false" afterPath="$PROJECT_DIR$/export/questions.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/incrementer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/incrementer.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/umatrix/my-umatrix-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/umatrix/my-umatrix-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/umatrix/my-umatrix-rules.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +118,9 @@
       <workItem from="1584516331623" duration="3118000" />
       <workItem from="1584946869330" duration="650000" />
       <workItem from="1585199050277" duration="6219000" />
-      <workItem from="1585206796605" duration="27887000" />
+      <workItem from="1585206796605" duration="31033000" />
+      <workItem from="1585534678822" duration="10650000" />
+      <workItem from="1585632459652" duration="23767000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
@@ -209,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1585440800732</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="- Fixed bugs!&#10;1. Now writes to the csv file&#10;2. Modularity increased and main method added&#10;3. Removed the dumb os selector and just manually wrote text input to umatrix instead of importing the file&#10;4. figured out how global variables work in python, probably(?) fixed the existing global variables&#10;5. Fix for NoneType concatenation for transcribed image text">
+      <created>1585444787555</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1585444787555</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +241,8 @@
     <MESSAGE value="Latest changes before pushing changing webdriver to firefox." />
     <MESSAGE value="Broke up everything into separate methods for increased modularity. &#10;Breaking up everything into modules had the unfortunate side effect of breaking the ability for the program to write to a csv file.&#10;&#10;Currently working to restore functionality to the software while maintaining the modularity for future improvements." />
     <MESSAGE value="Trying to get selenium to work by modifying the settings of umatrix before going through and copying pages from chegg to make for faster load times and possible compatibility with google chrome." />
-    <option name="LAST_COMMIT_MESSAGE" value="Trying to get selenium to work by modifying the settings of umatrix before going through and copying pages from chegg to make for faster load times and possible compatibility with google chrome." />
+    <MESSAGE value="- Fixed bugs!&#10;1. Now writes to the csv file&#10;2. Modularity increased and main method added&#10;3. Removed the dumb os selector and just manually wrote text input to umatrix instead of importing the file&#10;4. figured out how global variables work in python, probably(?) fixed the existing global variables&#10;5. Fix for NoneType concatenation for transcribed image text" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Fixed bugs!&#10;1. Now writes to the csv file&#10;2. Modularity increased and main method added&#10;3. Removed the dumb os selector and just manually wrote text input to umatrix instead of importing the file&#10;4. figured out how global variables work in python, probably(?) fixed the existing global variables&#10;5. Fix for NoneType concatenation for transcribed image text" />
   </component>
   <component name="WindowStateProjectService">
     <state x="585" y="198" key="#Notifications" timestamp="1582789992317">
@@ -255,43 +267,43 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state x="259" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.0.1854.1080@66.0.1854.1080" timestamp="1581837014952" />
-    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2" timestamp="1585440800270">
+    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2" timestamp="1585444787160">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="682" y="101" key="CommitChangelistDialog2/0.25.1366.743@0.25.1366.743" timestamp="1583451362035" />
-    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2/62.0.1858.1080@62.0.1858.1080" timestamp="1585440800270" />
+    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2/62.0.1858.1080@62.0.1858.1080" timestamp="1585444787160" />
     <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826557279" />
     <state x="521" y="233" width="428" height="509" key="FileChooserDialogImpl" timestamp="1583204247879">
       <screen x="0" y="25" width="1366" height="743" />
     </state>
     <state x="521" y="233" width="428" height="509" key="FileChooserDialogImpl/0.25.1366.743@0.25.1366.743" timestamp="1583204247879" />
     <state x="773" y="303" key="FileChooserDialogImpl/66.0.1854.1080@66.0.1854.1080" timestamp="1581895761094" />
-    <state width="1815" height="197" key="GridCell.Tab.0.bottom" timestamp="1585443614986">
+    <state width="1109" height="197" key="GridCell.Tab.0.bottom" timestamp="1585732369492">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.bottom/0.25.1366.743@0.25.1366.743" timestamp="1583213579511" />
-    <state width="1815" height="197" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1585443614986" />
+    <state width="1109" height="197" key="GridCell.Tab.0.bottom/62.0.1858.1080@62.0.1858.1080" timestamp="1585732369492" />
     <state width="1811" height="294" key="GridCell.Tab.0.bottom/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.bottom/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
-    <state width="1815" height="197" key="GridCell.Tab.0.center" timestamp="1585443614986">
+    <state width="1109" height="197" key="GridCell.Tab.0.center" timestamp="1585732369492">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.center/0.25.1366.743@0.25.1366.743" timestamp="1583213579511" />
-    <state width="1815" height="197" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1585443614986" />
+    <state width="1109" height="197" key="GridCell.Tab.0.center/62.0.1858.1080@62.0.1858.1080" timestamp="1585732369492" />
     <state width="1811" height="294" key="GridCell.Tab.0.center/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.center/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
-    <state width="1815" height="197" key="GridCell.Tab.0.left" timestamp="1585443614986">
+    <state width="1109" height="197" key="GridCell.Tab.0.left" timestamp="1585732369492">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.left/0.25.1366.743@0.25.1366.743" timestamp="1583213579510" />
-    <state width="1815" height="197" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1585443614986" />
+    <state width="1109" height="197" key="GridCell.Tab.0.left/62.0.1858.1080@62.0.1858.1080" timestamp="1585732369492" />
     <state width="1811" height="294" key="GridCell.Tab.0.left/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.left/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
-    <state width="1815" height="197" key="GridCell.Tab.0.right" timestamp="1585443614986">
+    <state width="1109" height="197" key="GridCell.Tab.0.right" timestamp="1585732369492">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state width="1320" height="178" key="GridCell.Tab.0.right/0.25.1366.743@0.25.1366.743" timestamp="1583213579511" />
-    <state width="1815" height="197" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1585443614986" />
+    <state width="1109" height="197" key="GridCell.Tab.0.right/62.0.1858.1080@62.0.1858.1080" timestamp="1585732369492" />
     <state width="1811" height="294" key="GridCell.Tab.0.right/66.0.1854.1080@66.0.1854.1080" timestamp="1582880560919" />
     <state width="1354" height="258" key="GridCell.Tab.0.right/70.27.1850.1053@70.27.1850.1053" timestamp="1584519448369" />
     <state width="886" height="358" key="GridCell.Tab.1.bottom" timestamp="1582648863975">
@@ -315,11 +327,11 @@
     </state>
     <state x="187" y="32" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1582935234738" />
     <state x="323" y="37" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1584516397981" />
-    <state x="118" y="276" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1585440802255">
+    <state x="118" y="276" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1585444789043">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="41" y="215" width="804" height="548" key="Vcs.Push.Dialog.v2/0.25.1366.743@0.25.1366.743" timestamp="1583451365778" />
-    <state x="118" y="276" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1585440802255" />
+    <state x="118" y="276" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1585444789043" />
     <state x="121" y="276" key="Vcs.Push.Dialog.v2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826560439" />
     <state width="470" height="540" key="XDebugger.FullValuePopup" timestamp="1582176554203">
       <screen x="66" y="0" width="1854" height="1080" />
@@ -340,6 +352,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/chegg_scraper$chromedriver_scraper.coverage" NAME="chromedriver-scraper Coverage Results" MODIFIED="1582433067915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/chegg_scraper$main.coverage" NAME="scraper Coverage Results" MODIFIED="1583213579499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/chegg_scraper$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1585443614981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/chegg_scraper$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1585732369487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
