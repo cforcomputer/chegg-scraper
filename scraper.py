@@ -318,7 +318,7 @@ def menu():
     global sign_in  # login at start T/F
     global username
     global password
-    sign_in = True
+    sign_in = False
 
     print("************WELCOME TO CHEGGSCRAPER************")
     print()
