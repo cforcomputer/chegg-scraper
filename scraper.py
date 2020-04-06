@@ -1,13 +1,12 @@
 import base64
 import csv
-import os.path
 import os
+import os.path
 import pickle
 import random
 import re
 import sys
 import time
-import urllib.request
 from datetime import datetime
 from os import path
 
@@ -18,11 +17,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
-# from fake_useragent import UserAgent
 from selenium.webdriver.common.keys import Keys
-
-
-# ua = UserAgent()
 
 
 # Save increment counter to file to be recovered after system reopened
@@ -35,6 +30,7 @@ def save_options(number_to_save):
 # and special characters.
 # It also solves the problem of csv writer defaulting ',' as "new row" delimiter
 def write_row(number, title, description, category, answer):
+    q_answeredtf = 'False'
     try:
         encoded_title = base64.b64encode(title.encode())
         # If only transcribed and rest blank, no transcription
@@ -49,8 +45,9 @@ def write_row(number, title, description, category, answer):
             encoded_answer = ""
         else:
             encoded_answer = base64.b64encode(answer.encode())
-        string_var = [number, encoded_title, encoded_description, category, encoded_answer]
-        writer(string_var, number)  # number = q_number
+            q_answeredtf = 'True'
+        string_var = [number, encoded_title, encoded_description, category, encoded_answer, q_answeredtf]
+        csv_writer(string_var, number)  # number = q_number
 
     except PermissionError:
         print('Document open, cannot write. Now sleeping for 15 seconds')
@@ -61,12 +58,8 @@ def write_row(number, title, description, category, answer):
             a = a - 1
 
 
-# List to hold values for write_row
-my_fields = ['number', 'title', 'description', 'category', 'answer']  # csv columns  # for DictWriter headers
-
-
 # Set the string value for the operating system to be used
-def set_os(os_input, option):
+def set_os(os_input):
     global new_os_input
     new_os_input = os_input
     print("New OS set to: " + new_os_input)
@@ -77,7 +70,11 @@ def set_os(os_input, option):
 # title: encoded in base64, first 15 or so characters of description
 # description: encoded in base64
 # question category ie. 'Physics'
-def writer(string_var, q_number):
+def csv_writer(string_var, q_number):
+    # List to hold values for write_row
+    # csv columns  # for DictWriter headers
+    my_fields = ['number', 'title', 'description', 'category', 'answer-body', 'answered-tf']
+
     q_number = int(q_number)
     my_file = open('export/questions.csv', 'a')
     write = csv.DictWriter(my_file, fieldnames=my_fields, lineterminator='\n')
@@ -86,52 +83,53 @@ def writer(string_var, q_number):
         write.writeheader()
 
     write.writerow({'number': f'{string_var[0]}', 'title': f'{string_var[1]}', 'description': f'{string_var[2]}',
-                    'category': f'{string_var[3]}', 'answer': f'{string_var[4]}'})
+                    'category': f'{string_var[3]}', 'answer-body': f'{string_var[4]}',
+                    'answered-tf': f'{string_var[5]}'})
 
 
-def set_options(sign_in):
+def set_options(opt_sign_in):
     global chrome_browser
     global rules
     rules = "umatrix/scraping-rules.txt"
     # Perform all functions required to gather the html of a page while avoiding bot detection
     # Must be outside 'collect_page()' so that a new instance is not created for each iteration
     opts = Options()
-    # opts.add_argument("user-agent=Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)")
-    # opts.add_argument("user-agent=" + ua.chrome)
+    # opts.add_argument("user-agent='Mozilla/5.0 (compatible; GoogleDocs; apps-spreadsheets; +http://docs.google.com)'")
+    # opts.add_argument("user-agent=" + "'" + ua.chrome + "'")
     opts.add_argument("--window-size=320,200")
     opts.add_extension("umatrix/extension_1_4_0_0.crx")
     browser = webdriver.Chrome(options=opts, executable_path=new_os_input)
     chrome_browser = browser
     # If the user selected the sign on attempt
-    umatrix_rule_set(sign_in, chrome_browser)  # Set the umatrix rule list depending on login
+    umatrix_rule_set(opt_sign_in, chrome_browser)  # Set the umatrix rule list depending on login
 
 
-def umatrix_rule_set(sign_in, chrome_browser):
+def umatrix_rule_set(umtrx_sign_in, umtrx_chrome_browser):
     # Set uMatrix session settings
     # Navigate to uMatrix session settings page
-    chrome_browser.get("chrome-extension://ogfcmafjalglgifnmanfmnieipoejdcf/dashboard.html#user-rules")
+    umtrx_chrome_browser.get("chrome-extension://ogfcmafjalglgifnmanfmnieipoejdcf/dashboard.html#user-rules")
     # switch to iframe to be able to access the user settings
-    frame = chrome_browser.find_element_by_xpath('/html/body/iframe')
-    chrome_browser.switch_to.frame(frame)
+    frame = umtrx_chrome_browser.find_element_by_xpath('/html/body/iframe')
+    umtrx_chrome_browser.switch_to.frame(frame)
     # select box to add changes, clear all and import settings
-    settings_window = chrome_browser.find_element_by_xpath("/html/body/div[2]/div[2]/div/div[3]"
-                                                           "/div/div[5]/div[1]/div/div/div/div[5]")
+    settings_window = umtrx_chrome_browser.find_element_by_xpath("/html/body/div[2]/div[2]/div/div[3]"
+                                                                 "/div/div[5]/div[1]/div/div/div/div[5]")
     settings_window.send_keys(Keys.CONTROL + "a")
     settings_window.send_keys(Keys.DELETE)
 
     try:
-        if sign_in:
+        if umtrx_sign_in:
             w = open("umatrix/login-rules.txt", "r")
             settings_window.send_keys(w.read())
-            chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
-            chrome_browser.find_element_by_id("commitButton").click()  # commit changes
-            login(chrome_browser)
-            umatrix_rule_set(False, chrome_browser)  # After logging in, set default web scraping list
+            umtrx_chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
+            umtrx_chrome_browser.find_element_by_id("commitButton").click()  # commit changes
+            login(umtrx_chrome_browser)
+            umatrix_rule_set(False, umtrx_chrome_browser)  # After logging in, set default web scraping list
         else:
             w = open("umatrix/scraping-rules.txt", "r")
             settings_window.send_keys(w.read())
-            chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
-            chrome_browser.find_element_by_id("commitButton").click()  # commit changes
+            umtrx_chrome_browser.find_element_by_id("editSaveButton").click()  # save changes
+            umtrx_chrome_browser.find_element_by_id("commitButton").click()  # commit changes
     except Exception as e:
         print(e)
         print("Error logging in")
@@ -140,18 +138,18 @@ def umatrix_rule_set(sign_in, chrome_browser):
 
 # This method is for logging in to chegg to scrape answers if paid account is available
 # currently WIP
-def login(chrome_browser):
+def login(login_chrome_browser):
     global username
     global password
     username = "patjobri@gmail.com"
     password = "24Jx%hgXLzIr^nr7"
-    chrome_browser.get("https://www.chegg.com/auth?action=login")  # Login page
-    chrome_browser.find_element_by_id("emailForSignIn").send_keys(username)
-    chrome_browser.find_element_by_id("passwordForSignIn").send_keys(password)
+    login_chrome_browser.get("https://www.chegg.com/auth?action=login")  # Login page
+    login_chrome_browser.find_element_by_id("emailForSignIn").send_keys(username)
+    login_chrome_browser.find_element_by_id("passwordForSignIn").send_keys(password)
 
     # Element clicks are being intercepted so it needs javascript to work
-    element = chrome_browser.find_element_by_xpath("//button[starts-with(@type,'submit')]")
-    chrome_browser.execute_script("arguments[0].click();", element)
+    element = login_chrome_browser.find_element_by_xpath("//button[starts-with(@type,'submit')]")
+    login_chrome_browser.execute_script("arguments[0].click();", element)
     time.sleep(10)
 
 
@@ -186,10 +184,10 @@ def start_program():
     x = 0
 
     try:
-        incrementer = check_for_incrementer()  # return the current increment value if it exists
+        inc = check_for_incrementer()  # return the current increment value if it exists
     except FileNotFoundError:
         print("Incrementer file does not exist")
-        incrementer = 0
+        inc = 0
 
     question_list = check_for_numberlist()
     # Should reset at the start of each loop
@@ -199,7 +197,7 @@ def start_program():
 
     try:
         # current_question = read_increment_to_use()  # find a random question to scrape (no duplicates)
-        for x in range(incrementer, upperbound):
+        for x in range(inc, upperbound):
             q_number = question_list[x]  # assign list question_list the increment [1++] to be question number
 
             # page = urlopen(req).read()  # take request and read
@@ -272,7 +270,7 @@ def start_program():
                 #         if match.group(1) is not None:
                 #             images.append(match.group(1))
 
-                print("Writing to write_row")
+                print("Question found! Writing to row")
                 write_row(str(q_number), title_string, desc_string, category, ans_string)
 
                 # reset
@@ -375,9 +373,9 @@ def menu():
                        "2. Linux\n")
 
         if choice == "1":
-            set_os("drivers/chromedriver_windows64/chromedriver.exe", 1)
+            set_os("drivers/chromedriver_windows64/chromedriver.exe")
         elif choice == "2":
-            set_os("drivers/chromedriver_linux64_81/chromedriver", 2)
+            set_os("drivers/chromedriver_linux64_81/chromedriver")
         else:
             menu()
     # Setting the total number of questions to scrape
@@ -411,17 +409,17 @@ def check_for_incrementer():
     # Load previous iteration if it exists
     if path.exists("incrementer.txt") and os.stat("incrementer.txt").st_size != 0:
         m = open("incrementer.txt", "r")
-        incrementer = int(m.readline())  # read the line - c
+        inc = int(m.readline())  # read the line - c
         m.close()
-        return incrementer
+        return inc  # return incrementer
 
 
 # Retrieve the last of numbers
 # Returns a list with the 4 million different numbers
 def read_next_question_list():
-    with open('export/numberlist.data', 'rb') as filehandle:
+    with open('export/numberlist.data', 'rb') as file_handle:
         # read the data as binary data stream
-        number_list = pickle.load(filehandle)
+        number_list = pickle.load(file_handle)
     return number_list
 
 
@@ -429,12 +427,12 @@ def read_next_question_list():
 # If the path exists and file is not empty
 def generate_num_range():
     ls = np.random.permutation(4000000)
-    with open('export/numberlist.data', 'wb') as filehandle:
+    with open('export/numberlist.data', 'wb') as file_handle:
         # store the data as binary data stream
-        pickle.dump(ls, filehandle)
+        pickle.dump(ls, file_handle)
 
 
 if __name__ == '__main__':
     # Set default operating system at start to windows
-    set_os('drivers/chromedriver_windows64/chromedriver.exe', 1)
+    set_os('drivers/chromedriver_windows64/chromedriver.exe')
     menu()
