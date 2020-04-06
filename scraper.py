@@ -31,15 +31,11 @@ def save_options(number_to_save):
 # It also solves the problem of csv writer defaulting ',' as "new row" delimiter
 def write_row(number, title, description, category, answer):
     q_answeredtf = 'False'
+
     try:
         encoded_title = base64.b64encode(title.encode())
-        # If only transcribed and rest blank, no transcription
-        if description is None:
-            encoded_description = ""
-        elif description == "Show transcribed image text":
-            encoded_description = ""
-        else:  # Otherwise encode the full description
-            encoded_description = base64.b64encode(description.encode())
+        # Otherwise encode the full description
+        encoded_description = base64.b64encode(description.encode())
 
         if answer == "":
             encoded_answer = ""
@@ -224,13 +220,20 @@ def start_program():
                 # Appends the transcribed image text to the end of the description
                 if soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
                     if desc_string is None:
-                        for row in soup.find_all('div[class*="Transcript__TranscriptContent-sc-"]'):
-                            row = row.text
+                        # Gather contents of div
+                        for row in soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
+                            row = row.text  # Remove html
+                            if row is None:  # If the div does not exist
+                                row = ""  # Declare row to be empty
+                            elif row == "Show transcribed image text":  # Otherwise if the div only contains
+                                row = ""  # Remove that value
                             desc_string = row
-                    else:
-                        for row in soup.find_all('div[class*="Transcript__TranscriptContent-sc-"]'):
-                            row = row.text
-                            desc_string += "\n" + row
+                    else:  # otherwise,
+                        for row in soup.select('div[class*="Transcript__TranscriptContent-sc-"]'):
+                            row = row.text  # Remove html
+                            if row == "Show transcribed image text":
+                                row = ""
+                            desc_string += row
 
                 # Add a loop to gather the breadcrumb name of a page
                 # results = soup.find(lambda tag: " questions and answers" in tag.string if tag.string else False)
@@ -269,6 +272,12 @@ def start_program():
                 #         match = re.search(r'(https:\/\/media.cheggcdn.com\/study\/(.*))', img_src)
                 #         if match.group(1) is not None:
                 #             images.append(match.group(1))
+
+                # Remove "Show transcribed image text" from front of transcription description
+                match = re.search(r'(Show.transcribed.image.text)', desc_string)
+                if match.group(1):
+                    # Replace match with empty string
+                    desc_string = re.sub(match.group(1), '', desc_string)
 
                 print("Question found! Writing to row")
                 write_row(str(q_number), title_string, desc_string, category, ans_string)
