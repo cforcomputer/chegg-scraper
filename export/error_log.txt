@@ -114,4 +114,10 @@ Iteration interrupted at question: 2911058ResultSet object has no attribute 'get
 Iteration interrupted at question: 2911058[Errno 13] Permission denied: 'export/questions.csv'
 
 @2020-03-31 00:34:08.701661
-Iteration interrupted at question: 466399
+Iteration interrupted at question: 466399'NoneType' object has no attribute 'group'
+
+@2020-04-10 14:02:54.223109
+Iteration interrupted at question: 2920194table questions_question has no column named question_decription
+
+@2020-04-10 14:06:31.878374
+Iteration interrupted at question: 2920194

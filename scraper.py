@@ -9,6 +9,7 @@ import sys
 import time
 from datetime import datetime
 from os import path
+import database_writer  # database_writer file
 
 import numpy as np
 # BeautifulSoup imports
@@ -30,28 +31,38 @@ def save_options(number_to_save):
 # and special characters.
 # It also solves the problem of csv writer defaulting ',' as "new row" delimiter
 def write_row(number, title, description, category, answer):
-    q_answeredtf = 'False'
+    global database
+    q_answeredtf = '0'  # write False to CSV file --> not answered
+    if not database:
+        try:
+            encoded_title = base64.b64encode(title.encode())
+            # Otherwise encode the full description
+            encoded_description = base64.b64encode(description.encode())
 
-    try:
-        encoded_title = base64.b64encode(title.encode())
-        # Otherwise encode the full description
-        encoded_description = base64.b64encode(description.encode())
+            if answer == "":
+                encoded_answer = ""
+            else:
+                encoded_answer = base64.b64encode(answer.encode())
+                q_answeredtf = '1'  # Otherwise the question is answered
 
-        if answer == "":
-            encoded_answer = ""
-        else:
-            encoded_answer = base64.b64encode(answer.encode())
-            q_answeredtf = 'True'
-        string_var = [number, encoded_title, encoded_description, category, encoded_answer, q_answeredtf]
-        csv_writer(string_var, number)  # number = q_number
+            string_var = [number, encoded_title, encoded_description, category, encoded_answer, q_answeredtf]
 
-    except PermissionError:
-        print('Document open, cannot write. Now sleeping for 15 seconds')
-        a = 15
-        while a != 0:
-            print(a)
-            time.sleep(1)
-            a = a - 1
+            csv_writer(string_var, number)  # number = q_number
+
+        except PermissionError:
+            print('Document open, cannot write. Now sleeping for 15 seconds')
+            a = 15
+            while a != 0:
+                print(a)
+                time.sleep(1)
+                a = a - 1
+    else:  # elif write to database is true
+        if answer != "":
+            q_answeredtf = '1'  # Otherwise the question is answered
+
+        dbw = database_writer
+        dbw.set_values_to_import(description, number, title, category, q_answeredtf, answer)
+        dbw.main()  # Execute write
 
 
 # Set the string value for the operating system to be used
@@ -196,12 +207,13 @@ def start_program():
         for x in range(inc, upperbound):
             q_number = question_list[x]  # assign list question_list the increment [1++] to be question number
 
+            time.sleep(random.randint(2,3))
             # page = urlopen(req).read()  # take request and read
             soup = BeautifulSoup(collect_page(q_number), 'html.parser')  # parse request to html
 
             # save counter each loop in event of error/crash
             save_options(x)
-
+            if
             # Find the question title
             if soup.select('h1[class*="PageHeading-"]') or \
                     soup.select('span[class*="question-text question-header-span"]'):  # if the page is a q&a page
@@ -275,9 +287,10 @@ def start_program():
 
                 # Remove "Show transcribed image text" from front of transcription description
                 match = re.search(r'(Show.transcribed.image.text)', desc_string)
-                if match.group(1):
-                    # Replace match with empty string
-                    desc_string = re.sub(match.group(1), '', desc_string)
+                if match is not None:
+                    if match.group(1):
+                        # Replace match with empty string
+                        desc_string = re.sub(match.group(1), '', desc_string)
 
                 print("Question found! Writing to row")
                 write_row(str(q_number), title_string, desc_string, category, ans_string)
@@ -325,7 +338,9 @@ def menu():
     global sign_in  # login at start T/F
     global username
     global password
+    global database
     sign_in = False
+    database = True
 
     print("************WELCOME TO CHEGGSCRAPER************")
     print()
@@ -335,6 +350,7 @@ def menu():
      3: Manually set x counter position
      4: Set total number of questions to scrape
      5: Set Operating System
+     6: Write to csv file or sqlite database
      Q: Quit
      """)
     # Starting the program
@@ -392,6 +408,13 @@ def menu():
         choice = input("Enter total # of questions: ")
         upperbound = choice
     # Quitting the program
+    elif choice == '6':
+        choice = input(" 1. Write to csv file \n" + "2. Write to database (default)\n")
+        if choice == "1":
+            database = False
+        else:
+            database = True
+
     elif choice == "Q" or choice == "q":
         sys.exit()
     else:
