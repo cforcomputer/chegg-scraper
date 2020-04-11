@@ -207,13 +207,13 @@ def start_program():
         for x in range(inc, upperbound):
             q_number = question_list[x]  # assign list question_list the increment [1++] to be question number
 
-            time.sleep(random.randint(2,3))
+            time.sleep(random.randint(2, 3))
             # page = urlopen(req).read()  # take request and read
             soup = BeautifulSoup(collect_page(q_number), 'html.parser')  # parse request to html
 
             # save counter each loop in event of error/crash
             save_options(x)
-            if
+
             # Find the question title
             if soup.select('h1[class*="PageHeading-"]') or \
                     soup.select('span[class*="question-text question-header-span"]'):  # if the page is a q&a page
