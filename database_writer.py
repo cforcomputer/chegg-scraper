@@ -47,6 +47,7 @@ def create_connection(db_file):  # db_file = db.sqlite3
 # answered = 1 or 0, where 0 = False
 # question_answer = NA for Not Answered, or full answer string
 # Insert a new question into the questions table
+# TODO: Need to implement a check to see if the question already exists in the database
 def create_question(conn, task):
 
     sql = ''' INSERT INTO questions_question(id, pub_date, question_description, question_number,

@@ -54,3 +54,4 @@ chegg.com ws22.chegg.com xhr block
 chegg.com www.facebook.com image block
 chegg.com www.google.com css block
 chegg.com www.google.com image block
+* * script block

@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/incrementer.txt" beforeDir="false" afterPath="$PROJECT_DIR$/incrementer.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_writer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/umatrix/scraping-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/umatrix/scraping-rules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +148,7 @@
       <workItem from="1586239593630" duration="1211000" />
       <workItem from="1586408366699" duration="872000" />
       <workItem from="1586457693057" duration="2016000" />
-      <workItem from="1586544381135" duration="11401000" />
+      <workItem from="1586544381135" duration="12101000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>

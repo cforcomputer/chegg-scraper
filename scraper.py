@@ -214,6 +214,8 @@ def start_program():
             # save counter each loop in event of error/crash
             save_options(x)
 
+            # TODO Build a conditional check to see if the captcha page is present
+
             # Find the question title
             if soup.select('h1[class*="PageHeading-"]') or \
                     soup.select('span[class*="question-text question-header-span"]'):  # if the page is a q&a page
