@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="37c09188-a1e3-47eb-8e62-db1f750bd5a4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database_writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/database_writer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/scraper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/umatrix/scraping-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/umatrix/scraping-rules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +145,10 @@
       <workItem from="1586239593630" duration="1211000" />
       <workItem from="1586408366699" duration="872000" />
       <workItem from="1586457693057" duration="2016000" />
-      <workItem from="1586544381135" duration="12101000" />
+      <workItem from="1586544381135" duration="13928000" />
+      <workItem from="1586749224968" duration="1198000" />
+      <workItem from="1586906163114" duration="307000" />
+      <workItem from="1587337692238" duration="1164000" />
     </task>
     <task id="LOCAL-00001" summary="Edited the script so that the cleaned text is output to two separate files. &#10;1 - The descriptions.csv &#10;2 - The titles.csv&#10;Current issues: The single question is stored on multiple rows when it should only be on one row &amp; column.">
       <created>1581835927251</created>
@@ -283,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586558010241</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added todos">
+      <created>1586577725571</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1586577725571</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +317,8 @@
     <MESSAGE value="Added adjustments to match database schema for django.&#10;Included T/F for whether a question has an answer or not.&#10;&#10;To-Do: Fix transcribed question description capture" />
     <MESSAGE value="Implemented fix for collecting transcribed answer question definitions.&#10;&#10;Note: Previous commit added a file for database writer. Database writer is an application specific for writing each question to a sqlite3 database in python; instead of being written to a csv." />
     <MESSAGE value="Implemented direct database write with database_writer.py and added the template database for testing. --&gt; confirmed success!&#10;&#10;Ran the tool for a few minutes and figured out that at the current scraping rate, PerimeterX does in fact still block the tool, despite the CDN being blocked. Well... shit I guess" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented direct database write with database_writer.py and added the template database for testing. --&gt; confirmed success!&#10;&#10;Ran the tool for a few minutes and figured out that at the current scraping rate, PerimeterX does in fact still block the tool, despite the CDN being blocked. Well... shit I guess" />
+    <MESSAGE value="Added todos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added todos" />
   </component>
   <component name="WindowStateProjectService">
     <state x="585" y="198" key="#Notifications" timestamp="1582789992317">
@@ -344,11 +352,11 @@
       <screen x="66" y="0" width="1854" height="1080" />
     </state>
     <state x="259" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/66.0.1854.1080@66.0.1854.1080" timestamp="1581837014952" />
-    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2" timestamp="1586558009843">
+    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2" timestamp="1586577725224">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="682" y="101" key="CommitChangelistDialog2/0.25.1366.743@0.25.1366.743" timestamp="1583451362035" />
-    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2/62.0.1858.1080@62.0.1858.1080" timestamp="1586558009843" />
+    <state x="833" y="0" width="1087" height="1080" key="CommitChangelistDialog2/62.0.1858.1080@62.0.1858.1080" timestamp="1586577725224" />
     <state x="992" y="111" width="799" height="855" key="CommitChangelistDialog2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826557279" />
     <state x="771" y="302" width="428" height="509" key="FileChooserDialogImpl" timestamp="1586549264010">
       <screen x="62" y="0" width="1858" height="1080" />
@@ -406,11 +414,11 @@
     <state x="187" y="32" key="SettingsEditor/0.25.1366.743@0.25.1366.743" timestamp="1582935234738" />
     <state x="316" y="10" key="SettingsEditor/62.0.1858.1080@62.0.1858.1080" timestamp="1586288440228" />
     <state x="323" y="37" width="1022" height="737" key="SettingsEditor/70.27.1850.1053@70.27.1850.1053" timestamp="1584516397981" />
-    <state x="118" y="276" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1586558011497">
+    <state x="118" y="276" width="804" height="548" key="Vcs.Push.Dialog.v2" timestamp="1586577726783">
       <screen x="62" y="0" width="1858" height="1080" />
     </state>
     <state x="41" y="215" width="804" height="548" key="Vcs.Push.Dialog.v2/0.25.1366.743@0.25.1366.743" timestamp="1583451365778" />
-    <state x="118" y="276" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1586558011497" />
+    <state x="118" y="276" key="Vcs.Push.Dialog.v2/62.0.1858.1080@62.0.1858.1080" timestamp="1586577726783" />
     <state x="121" y="276" key="Vcs.Push.Dialog.v2/66.0.1854.1080@66.0.1854.1080" timestamp="1582826560439" />
     <state width="470" height="540" key="XDebugger.FullValuePopup" timestamp="1582176554203">
       <screen x="66" y="0" width="1854" height="1080" />
