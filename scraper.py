@@ -148,8 +148,8 @@ def umatrix_rule_set(umtrx_sign_in, umtrx_chrome_browser):
 def login(login_chrome_browser):
     global username
     global password
-    username = "patjobri@gmail.com"
-    password = "24Jx%hgXLzIr^nr7"
+    username = ""
+    password = ""
     login_chrome_browser.get("https://www.chegg.com/auth?action=login")  # Login page
     login_chrome_browser.find_element_by_id("emailForSignIn").send_keys(username)
     login_chrome_browser.find_element_by_id("passwordForSignIn").send_keys(password)
